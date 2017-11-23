@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务一：表单（一）单个表单项的检验</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body {
+      background-color: #eee;
+    }
+    
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+      padding: 120px 0;
+      background-color: #fff;
+    }
+    
+    ul {
+      width: 700px;
+      margin: 0 auto;
+      list-style: none;
+    }
+    
+    li {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    
+    label {
+      position: absolute;
+      height: 54px;
+      padding: 0 20px;
+      line-height: 54px;
+      font-size: 20px;
+      color: #aaa;
+    }
+    
+    input {
+      width: 516px;
+      height: 52px;
+      padding-left: 20px;
+      margin-right: 20px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 20px;
+      line-height: 52px;
+    }
+    
+    button {
+      width: 110px;
+      height: 54px;
+      vertical-align: top;
+      background-color: #2F79BA;
+      border: 1px solid #286CA9;
+      border-radius: 4px;
+      font-size: 20px;
+      color: #fff;
+    }
+    
+    p {
+      line-height: 30px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <ul>
+    <li class="nickname">
+      <div class="input">
+        <label for="nickname">昵称</label><input type="text" id="nickname">
+        <button>验证</button>
+      </div>
+      <p class="message">必填,长度为4~16个字符（汉字、字母、数字）</p>
+    </li>
+    <li class="username">
+      <div class="input">
+        <label for="username">账号</label><input type="text" id="username">
+        <button>验证</button>
+      </div>
+      <p class="message">必填,长度为4~16个字符（字母、数字）</p>
+    </li>
+    <li class="password">
+      <div class="input">
+        <label for="password">密码</label><input type="password" id="password">
+        <button>验证</button>
+      </div>
+      <p class="message">必填,长度为4~16个字符（字母、数字）</p>
+    </li>
+  </ul>
+</div>
+
+<script>
+  /*
+  1. 匹配国内电话号码：\d{3}-\d{8}|\d{4}-\d{7};
+  2. 验证手机号：/^((13[0-9])|(15[^4,\D])|(18[0,5-9]))\d{8}$/;
+  3. 验证邮箱：/^[\w\-\.]+\@[\w]+\.[\w]{2,4}$/;
+  4. 验证用户名：/^[a-zA-Z0-9_-]{3,16}$/;
+  5. 验证密码：/^[\$a-zA-Z0-9_-]{6,18}$/;
+  6. 强度匹配密码-区分大小写英文字母: /^([a-z].*[A-Z])|([A-Z].*[a-z])$/;
+  7. 强度匹配密码-带有字母 和 数字: /^([a-z].*[0-9])|([A-Z].*[0-9])|[0-9].*[a-zA-Z]$/;
+  8. 匹配中文字符的正则表达式：/^[\u4e00-\u9fa5]{2,4}$/;
+  9. 匹配双字节字符(包括汉字在内)：[^\x00-\xff];评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）;
+  10. 匹配首尾空白字符: /^\s*|\s*$/;
+  11. 匹配中国邮政编码：[1-9]\d{5}(?!\d);
+  12. 匹配身份证：\d{15}|\d{18};
+  
+ */
+  
+  
+  (function () {
+    var btn = document.getElementsByTagName('button'),
+      input = document.getElementsByTagName('input'),
+      label = document.getElementsByTagName('label'),
+      p = document.getElementsByTagName('p');
+    
+    //输入框循环绑定获取、失去焦点事件
+    for (var i = 0; i < input.length; i++) {
+      input[i].dataset.index = i;
+      
+      //获取焦点事件
+      input[i].onfocus = function () {
+        label[this.dataset.index].style.display = 'none';
+        this.style.borderColor = '#aaa';
+        if(this.dataset.index == 0) {
+          p[this.dataset.index].innerHTML = '必填,长度为4~16个字符（汉字、字母、数字）';
+        } else if (this.dataset.index == 1) {
+          p[this.dataset.index].innerHTML = '必填,长度为4~16个字符（字母、数字）';
+        } else if (this.dataset.index == 2) {
+          p[this.dataset.index].innerHTML = '必填,长度为4~16个字符（字母、数字）';
+        }
+        p[this.dataset.index].style.color = '#aaa';
+      }
+      
+      //失去焦点事件
+      input[i].onblur = function () {
+        if (this.value === '') {
+          label[this.dataset.index].style.display = 'block';
+        }
+      }
+    }
+    
+    //验证昵称
+    btn[0].onclick = function () {
+      var val = document.getElementById('nickname').value,
+        reg = /^[\u4e00-\u9fa5a-zA-Z0-9]{2,16}$/;
+      
+      if (!val) {
+        empty(0);
+      } else if (reg.test(val) && getLen(val)) {
+        success(0);
+      } else {
+        error(0);
+      }
+    }
+    
+    //验证账号
+    btn[1].onclick = function () {
+      var val = document.getElementById('username').value,
+      reg = /^[a-zA-Z0-9]{4,16}$/;
+      
+      if (!val) {
+        empty(1);
+      } else if (reg.test(val)) {
+        success(1);
+      } else {
+        error(1);
+      }
+    }
+    
+    //验证密码
+    btn[2].onclick = function () {
+      var val = document.getElementById('password').value,
+        reg = /^[a-zA-Z0-9]{4,16}$/;
+  
+      if (!val) {
+        empty(2);
+      } else if (reg.test(val)) {
+        success(2);
+      } else {
+        error(2);
+      }
+    }
+    
+    //内容为空执行函数
+    function empty(index) {
+      input[index].style.borderColor = 'red';
+      p[index].style.color = 'red';
+      p[index].innerHTML = '内容不能为空';
+    }
+    
+    //验证失败执行函数
+    function error(index) {
+      input[index].style.borderColor = 'red';
+      p[index].style.color = 'red';
+      p[index].innerHTML = '格式错误,请重新输入';
+    }
+    
+    //验证成功执行函数
+    function success(index) {
+      input[index].style.borderColor = 'green';
+      p[index].style.color = 'green';
+      p[index].innerHTML = '输入正确,请继续下一步';
+    }
+  }())
+  
+  //判断字符长度
+  function getLen(str) {
+    
+    //将双字节字符转换成两个单字节计算
+    var len = str.replace(/[^\x00-\xff]/g,"01").length;
+    var bool;
+    
+    if(len >= 4 && len <=16) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    
+    return bool;
+  }
+
+</script>
+</body>
+</html>

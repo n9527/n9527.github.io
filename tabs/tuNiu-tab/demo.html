@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="../../libs/animate.js"></script>
+
+<script>
+  var box = document.getElementById('box');
+  box.onclick = function () {
+    animate(box,{'width' : 100});
+  }
+  var index = 1;
+
+  var timer1 = setInterval(function () {
+    ++index;
+    if(index > 5) {
+      clearInterval(timer1);
+      return;
+    }
+    console.log('a' + index);
+  },1000)
+  var timer2 = setInterval(function () {
+    ++index;
+    if(index > 5) {
+      clearInterval(timer2);
+      return;
+    }
+    console.log('b' + index);
+  },1000)
+</script>
+</body>
+</html>

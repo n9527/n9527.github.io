@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>放大镜</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      padding-top: 50px;
+      padding-left: 200px;
+    }
+    
+    .viewport-small {
+      position: relative;
+      float: left;
+      width: 350px;
+      height: 350px;
+      border: 1px solid #000;
+    }
+    
+    .mask {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 50%;
+      background: greenyellow;
+      opacity: .3;
+      filter: alpha(opacity=30);
+      cursor: all-scroll;
+    }
+    
+    img {
+      display: block;
+    }
+    
+    .viewport-big {
+      display: none;
+      position: relative;
+      float: left;
+      width: 400px;
+      height: 400px;
+      margin-left: 10px;
+      overflow: hidden;
+      border: 1px solid #000;
+    }
+    
+    .viewport-big img {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="viewport-small" id="small">
+    <div class="mask" id="mask"></div>
+    <img src="./images/small.jpg" alt="">
+  </div>
+  <div class="viewport-big" id="big">
+    <img src="./images/big.jpg" alt="" id="pic">
+  </div>
+</div>
+
+<script>
+  (function () {
+    var small = document.getElementById('small'),
+      mask = document.getElementById('mask'),
+      big = document.getElementById('big'),
+      pic = document.getElementById('pic');
+    
+    small.onmouseenter = function () {
+      mask.style.display = 'block';
+      big.style.display = 'block';
+      
+      
+      small.onmousemove = function (event) {
+        var e = event || window.event;
+        
+        //第一步 获取鼠标在页面中的位置
+        var pageX = e.clientX + scroll().left;
+        var pageY = e.clientY + scroll().top;
+        
+        //第二部 获取鼠标在small盒子中的位置
+        var boxX = pageX - small.offsetLeft;
+        var boxY = pageY - small.offsetTop;
+        
+        //限制移动的最大最小值
+        var maxX = small.offsetWidth - mask.offsetWidth;
+        var maxY = small.offsetHeight - mask.offsetHeight;
+        var movX = boxX - mask.offsetWidth / 2;
+        var movY = boxY - mask.offsetHeight / 2;
+        movX = movX > maxX ? maxX : movX;
+        movX = movX < 0 ? 0 : movX;
+        movY = movY > maxY ? maxY : movY;
+        movY = movY < 0 ? 0 : movY;
+        
+        //移动
+        mask.style.left = movX + 'px';
+        mask.style.top = movY + 'px';
+        
+        //大图片等按比例移动
+        pic.style.left = movX * (big.offsetWidth / mask.offsetWidth) * -1 +
+          'px';
+        pic.style.top = movY * (big.offsetHeight / mask.offsetHeight) * -1 +
+          'px';
+      }
+      
+    };
+    
+    small.onmouseleave = function () {
+      mask.style.display = 'none';
+      big.style.display = 'none';
+      
+      small.onmousemove = null;
+    };
+    
+    //兼容获取scroll
+    function scroll() {
+      
+      //ie9+ 标准浏览器
+      if (window.pageYOffset != null) {
+        return {
+          left: window.pageXOffset,
+          top: window.pageYOffset
+        }
+      }
+      
+      //声明DTD的
+      else if (document.compatMode === "CSS1Compat") {
+        return {
+          left: document.documentElement.scrollLeft,
+          top: document.documentElement.scrollTop
+        }
+      }
+      
+      //未声明DTD
+      return {
+        left: document.body.scrollLeft,
+        top: document.body.scrollTop
+      }
+    }
+  }())
+</script>
+</body>
+</html>

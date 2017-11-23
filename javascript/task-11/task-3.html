@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务三：表单（三）联动</title>
+  <style>
+    .userinfo-content-others {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="userinfo">
+  <form action="#">
+    <div class="userinfo-head">
+      <input type="radio" name="info" id="student" checked><label for="student">在校生</label>
+      <input type="radio" name="info" id="others"><label for="others">非在校生</label>
+    </div>
+    <div class="userinfo-content">
+      <div class="userinfo-content-student">
+        <label for="city">城市</label>
+        <select id="city" name="school">
+          <option>北京</option>
+          <option>上海</option>
+          <option>广州</option>
+        </select>
+        <label for="school">学校</label>
+        <select name="school" id="school">
+          <option>北京大学1</option>
+          <option>北京大学2</option>
+          <option>北京大学3</option>
+          <option>北京大学4</option>
+          <option>北京大学5</option>
+        </select>
+      </div>
+      <div class="userinfo-content-others">
+        <label for="corporation">就业单位</label>
+        <input type="text" id="corporation">
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  (function () {
+    var input = document.getElementsByTagName('input'),
+      city = document.getElementById('city'),
+      cityContent = city.parentNode,
+      school = document.getElementById('school'),
+      othersContent = document.getElementById('corporation').parentNode;
+    
+    //在校生单选框事件
+    input[0].onclick = function () {
+      othersContent.style.display = 'none';
+      cityContent.style.display = 'block';
+    }
+    
+    //其他单选框事件
+    input[1].onclick = function () {
+      cityContent.style.display = 'none';
+      othersContent.style.display = 'block';
+    }
+    
+    //下拉列表联动事件
+    city.onchange = function () {
+      
+      //selectedIndex返回被选中的option的index.
+      //.text 返回option中的文本值
+      var text = this.children[this.selectedIndex].text;
+      
+      //清空select下面的所有option
+      school.length = 0;
+      
+      switch (text) {
+        case '北京':
+          
+          //add() 方法用于向 <select> 添加一个 <option> 元素。
+          //new Option() 创建一个option标签
+          school.add(new Option('北京大学1'));
+          school.add(new Option('北京大学2'));
+          school.add(new Option('北京大学3'));
+          break;
+        case '上海':
+          school.add(new Option('上海大学1'));
+          school.add(new Option('上海大学2'));
+          school.add(new Option('上海大学3'));
+          break;
+        case '广州':
+          school.add(new Option('广州大学1'));
+          school.add(new Option('广州大学2'));
+          school.add(new Option('广州大学3'));
+          break;
+      }
+    }
+    
+    
+  }());
+</script>
+</body>
+</html>

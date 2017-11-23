@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务四：基础JavaScript练习（一）</title>
+  <style>
+    span {
+      padding: 0 10px;
+      margin: 0 3px;
+      background-color: red;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<input type="text">
+<button>左侧入</button>
+<button>右侧入</button>&nbsp;&nbsp;&nbsp;
+<button>左侧出</button>
+<button>右侧出</button>
+<p><span>333</span><span>666</span><span>999</span></p>
+<script>
+  
+  (function () {
+    var p = document.getElementsByTagName('p')[0],
+      span = p.getElementsByTagName('span'),
+      btn = document.getElementsByTagName('button'),
+      input = document.getElementsByTagName('input')[0];
+    
+    //在容器最前面添加元素
+    btn[0].onclick = function () {
+      if (input.value === '') {
+        alert('内容不能为空!');
+        return;
+      } else {
+        var span = document.createElement('span');
+        span.innerHTML = input.value;
+        if (p.children[0]) {
+          p.insertBefore(span, p.children[0]);
+        } else {
+          p.appendChild(span);
+        }
+      }
+    }
+    
+    //在容器末尾添加元素
+    btn[1].onclick = function () {
+      if (input.value === '') {
+        alert('内容不能为空!');
+        return;
+      } else {
+        var span = document.createElement('span');
+        span.innerHTML = input.value;
+        p.appendChild(span);
+      }
+    }
+    
+    //删除第一个元素
+    btn[2].onclick = function () {
+      if (p.children.length > 0) {
+        p.removeChild(p.children[0]);
+      }
+    }
+    
+    //删除最后一个元素
+    btn[3].onclick = function () {
+      if (p.children.length > 0) {
+        p.removeChild(p.children[p.children.length - 1]);
+      }
+    }
+    
+    //点击谁删除谁
+    p.onclick = function (event) {
+      var e = event || window.event,
+        target = e.target ? e.target : e.srcElement;
+      
+      if (target.tagName === 'SPAN') {
+        p.removeChild(target);
+      }
+    }
+  }())
+
+
+</script>
+</body>
+</html>

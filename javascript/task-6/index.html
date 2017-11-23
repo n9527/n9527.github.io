@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务四：听指令的小方块（一）</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+    .container {
+      overflow: hidden;
+    }
+    
+    .viewport {
+      float: left;
+    }
+    
+    table {
+      border-collapse: collapse;
+    }
+    
+    th,
+    td {
+      width: 50px;
+      height: 50px;
+    }
+    
+    th {
+      border-right: 2px solid #000;
+    }
+    
+    td {
+      border: 1px solid #ccc;
+    }
+    
+    tr td:last-child {
+      border-right: 2px solid #000;
+    }
+    
+    tr:first-child th {
+      border-bottom: 2px solid #000;
+      border-right: 0;
+    }
+    
+    tr:first-child th:first-child {
+      border: 0;
+    }
+    
+    tr:last-child td {
+      border-bottom: 2px solid #000;
+    }
+    
+    .origin {
+      position: relative;
+    }
+    
+    #target {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: -webkit-linear-gradient(to bottom, blue 0%, blue 20%, red 20%, red 100%);
+      background: -o-linear-gradient(to bottom, blue 0%, blue 20%, red 20%, red 100%);
+      background: -moz-linear-gradient(to bottom, blue 0%, blue 20%, red 20%, red 100%);
+      background: linear-gradient(to bottom, blue 0%, blue 20%, red 20%, red 100%);
+      -webkit-transition: all .3s linear;
+      -moz-transition: all .3s linear;
+      -o-transition: all .3s linear;
+      transition: all .3s linear;
+    }
+    
+    .control {
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    
+    .control > div {
+      width: 550px;
+      text-align: center;
+    }
+    
+    input {
+      margin: 10px;
+    }
+    
+    .control > div:first-child input[type=button] {
+      width: 100px;
+    }
+    
+    input[type=text] {
+      width: 300px;
+      height: 50px;
+      vertical-align: top;
+      font-size: 30px;
+      line-height: 50px;
+    }
+    
+    input[type=button] {
+      width: 200px;
+      height: 50px;
+    }
+  
+  </style>
+</head>
+<body>
+
+
+<div class="container">
+  <div class="viewport">
+    <table>
+      <tr>
+        <th></th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+      </tr>
+      <tr>
+        <th>1</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>5</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>6</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="origin">
+          <div id="target"></div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>7</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>8</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>9</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>10</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>11</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div class="control">
+    <!--
+  GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长）
+  TUN LEF：向左转（逆时针旋转90度）
+  TUN RIG：向右转（顺时针旋转90度）
+  TUN BAC：向右转（旋转180度）
+  TRA LEF：向屏幕的左侧移动一格，方向不变
+  TRA TOP：向屏幕的上面移动一格，方向不变
+  TRA RIG：向屏幕的右侧移动一格，方向不变
+  TRA BOT：向屏幕的下面移动一格，方向不变
+  MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格
+  MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格
+  MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格
+  MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格
+  -->
+    <div>
+      <input type="button" value="向左转"
+      ><input type="button" value="向右转">
+    </div>
+    <div>
+      <input type="button" value="向左移"
+      ><input type="button" value="向右移"
+    ><input type="button" value="向上移"
+    ><input type="button" value="向下移">
+    </div>
+    <div>
+      <input type="button" value="转上移"
+      ><input type="button" value="转下移"
+    ><input type="button" value="转左移"
+    ><input type="button" value="转右移">
+    </div>
+  
+  </div>
+</div>
+<script>
+  (function () {
+    var target = document.getElementById('target'),
+      btn = document.getElementsByTagName('input'),
+      
+      //通过index值记录元素转了多少;
+      index = 0,
+      max = 250,
+      min = -250;
+    
+    btn[0].onclick = turnL;
+    btn[1].onclick = turnR;
+    btn[2].onclick = moveL;
+    btn[3].onclick = moveR;
+    btn[4].onclick = moveT;
+    btn[5].onclick = moveB;
+    btn[6].onclick = function () {
+      
+      //通过index值判断当前的方向
+      var val;
+      if (Math.abs(index) < 4) {
+        val = index;
+      } else {
+        val = index % 4;
+      }
+      switch (val) {
+        case 0:
+          moveT();
+          break;
+        case 1:
+          turnL();
+          moveT();
+          break;
+        case 2:
+          index++;
+          turnR();
+          moveT();
+          break;
+        case 3:
+          turnR();
+          moveT();
+          break;
+        case -1:
+          turnR();
+          moveT();
+          break;
+        case -2:
+          index++;
+          turnR();
+          moveT();
+          break;
+        case -3:
+          turnL();
+          moveT();
+          break;
+      }
+    }
+    btn[7].onclick = function () {
+    
+      //通过index值判断当前的方向
+      var val;
+      if (Math.abs(index) < 4) {
+        val = index;
+      } else {
+        val = index % 4;
+      }
+      switch (val) {
+        case 0:
+          index++;
+          turnR();
+          moveB();
+          break;
+        case 1:
+          turnR();
+          moveB();
+          break;
+        case 2:
+          moveB();
+          break;
+        case 3:
+          turnL();
+          moveB();
+          break;
+        case -1:
+          turnL();
+          moveB();
+          break;
+        case -2:
+          moveB();
+          break;
+        case -3:
+          turnR();
+          moveB();
+          break;
+      }
+    }
+    btn[8].onclick = function () {
+    
+      //通过index值判断当前的方向
+      var val;
+      if (Math.abs(index) < 4) {
+        val = index;
+      } else {
+        val = index % 4;
+      }
+      switch (val) {
+        case 0:
+          turnL();
+          moveL();
+          break;
+        case 1:
+          index++;
+          turnR();
+          moveL();
+          break;
+        case 2:
+          turnR();
+          moveL();
+          break;
+        case 3:
+          moveL();
+          break;
+        case -1:
+          moveL();
+          break;
+        case -2:
+          turnR();
+          moveL();
+          break;
+        case -3:
+          index++;
+          turnR();
+          moveL();
+          break;
+      }
+    }
+    btn[9].onclick = function () {
+    
+      //通过index值判断当前的方向
+      var val;
+      if (Math.abs(index) < 4) {
+        val = index;
+      } else {
+        val = index % 4;
+      }
+      switch (val) {
+        case 0:
+          turnR();
+          moveR();
+          break;
+        case 1:
+          moveR();
+          break;
+        case 2:
+          turnL();
+          moveR();
+          break;
+        case 3:
+          index++;
+          turnR();
+          moveR();
+          break;
+        case -1:
+          index++;
+          turnR();
+          moveR();
+          break;
+        case -2:
+          turnL();
+          moveR();
+          break;
+        case -3:
+          moveR();
+          break;
+      }
+    }
+    
+    //向上移动,当前值+移动距离;
+    function moveT() {
+      var val = getStyle(target, 'top') - 50;
+      val = val > max ? max : val;
+      val = val < min ? min : val;
+      target.style.top = val + 'px';
+    }
+    
+    //向下移动
+    function moveB() {
+      var val = getStyle(target, 'top') + 50;
+      val = val > max ? max : val;
+      val = val < min ? min : val;
+      target.style.top = val + 'px';
+    }
+    
+    //向左移动
+    function moveL() {
+      var val = getStyle(target, 'left') - 50;
+      val = val > max ? max : val;
+      val = val < min ? min : val;
+      target.style.left = val + 'px';
+    }
+    
+    //向右移动
+    function moveR() {
+      var val = getStyle(target, 'left') + 50;
+      val = val > max ? max : val;
+      val = val < min ? min : val;
+      target.style.left = val + 'px';
+    }
+    
+    //向左转
+    function turnL() {
+      index--;
+      var val = index * 90;
+      
+      target.style.transform = 'rotate(' + val + 'deg)';
+    }
+    
+    //向右转
+    function turnR() {
+      index++;
+      var val = index * 90;
+      
+      target.style.transform = 'rotate(' + val + 'deg)';
+    }
+    
+  }())
+  
+  function getStyle(ele, style) {
+    return ele.currentStyle ? parseInt(ele.currentStyle[style]) :
+      parseInt(window.getComputedStyle(ele, null)[style]);
+  }
+</script>
+</body>
+</html>

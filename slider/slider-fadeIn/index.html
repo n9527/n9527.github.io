@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>淡入淡出式轮播图</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    img {
+      border: 0;
+      vertical-align: middle;
+    }
+    
+    .slider {
+      position: relative;
+      width: 790px;
+      height: 340px;
+      margin: 100px auto;
+    }
+    
+    .slider-list {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .slider-list-item {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .slider-list-item.first {
+      display: block;
+    }
+    
+    .slider-list-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .slider-list-item a img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .slider-indicator {
+      position: absolute;
+      width: 100%;
+      bottom: 20px;
+      text-align: center;
+      font-size: 0;
+      border-radius: 10px;
+    }
+    
+    .slider-indicator-btn {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 10px;
+      background-color: #f00;
+      border-radius: 100%;
+    }
+    
+    .slider-indicator-btn.active {
+      background-color: #00f;
+    }
+    
+    .slider-control {
+      display: none;
+      position: absolute;
+      top: 50%;
+      margin-top: -30px;
+      width: 30px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 18px;
+      color: #fff;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.2);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000, endColorstr=#33000000);
+    }
+    
+    .slider-control:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000, endColorstr=#7f000000);
+      
+    }
+    
+    .slider-control-prev {
+      left: 0;
+    }
+    
+    .slider-control-next {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="slider">
+  <ul class="slider-list">
+    <li class="slider-list-item first"><a href="#"><img src="../images/1.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/2.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/3.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/4.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/5.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/6.jpg" alt=""></a></li>
+  </ul>
+  <div class="slider-indicator"><i class="slider-indicator-btn active"></i><i class="slider-indicator-btn"></i><i
+    class="slider-indicator-btn"></i><i class="slider-indicator-btn"></i><i class="slider-indicator-btn"></i><i
+    class="slider-indicator-btn"></i></div>
+  <a href="javascript:void(0)" class="slider-control slider-control-prev">&lt;</a>
+  <a href="javascript:void(0)" class="slider-control slider-control-next">&gt;</a>
+</div>
+<script src="../../public/js/jquery.min.js"></script>
+<script>
+  
+  //jq插件
+  $.fn.slider = function (num) {
+    var container = $(this),
+      sliderList = container.find('.slider-list-item'),
+      prev = container.find('.slider-control-prev'),
+      sliderControl = container.find('.slider-control'),
+      next = container.find('.slider-control-next'),
+      indicatorBtn = container.find('.slider-indicator-btn'),
+      index = 0,
+      number = num - 1,
+      timer = null,
+      time = 3000;
+    
+    //开启自动轮播
+    autoPlay();
+    
+    function autoPlay() {
+      timer = setInterval(nextHandler, time)
+    }
+    
+    //鼠标进入停止自动轮播
+    container.on('mouseenter', function () {
+      if (sliderControl) {
+        sliderControl.show();
+      }
+      clearInterval(timer);
+    });
+    
+    //鼠标离开继续自动轮播
+    container.on('mouseleave', function () {
+      if (sliderControl) {
+        sliderControl.hide();
+      }
+      autoPlay();
+    });
+    
+    //前后鼠标点播
+    prev.on('click', prevHandler);
+    next.on('click', nextHandler);
+    
+    //小圆点控制器鼠标进入选择显示;
+    indicatorBtn.on('mouseenter', function () {
+      index = $(this).index();
+      animate();
+    });
+    
+    function nextHandler() {
+      index++;
+      if (index > number) {
+        index = 0;
+      }
+      animate();
+    }
+    
+    function prevHandler() {
+      index--;
+      if (index < 0) {
+        index = number;
+      }
+      animate();
+    }
+    
+    function animate() {
+      sliderList.eq(index).fadeIn().siblings().fadeOut();
+      indicatorBtn.removeClass('active').eq(index).addClass('active');
+    }
+    
+  };
+  
+  //调用插件
+  $('.slider').slider(6);
+</script>
+</body>
+</html>

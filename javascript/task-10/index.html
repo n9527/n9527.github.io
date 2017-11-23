@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>楼层</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body {
+    
+    }
+    
+    .head {
+      padding: 50px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #3eaf0e;
+    }
+    
+    .lift-content {
+      height: 500px;
+      padding: 20px;
+      border: 1px solid #aaa;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      color: #3eaf0e;
+    }
+    
+    .footer {
+      height: 500px;
+    }
+    
+    .lift {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      margin-top: -182px;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    li {
+      height: 40px;
+      padding: 0 10px;
+      margin-bottom: 10px;
+      background-color: #3eaf0e;
+      border: 1px solid #ccc;
+      line-height: 40px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    li:hover {
+      color: red;
+    }
+    
+  
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="head">
+    <h1>指定楼层</h1>
+  </div>
+  <div class="main" id="storeys">
+    <div class="lift-content">
+      <h3>娱乐</h3>
+    </div>
+    <div class="lift-content">
+      <h3>看片</h3>
+    </div>
+    <div class="lift-content">
+      <h3>购物</h3>
+    </div>
+    <div class="lift-content">
+      <h3>游戏</h3>
+    </div>
+    <div class="lift-content">
+      <h3>生活</h3>
+    </div>
+    <div class="lift-content">
+      <h3>借钱</h3>
+    </div>
+    <div class="lift-content">
+      <h3>星座运势</h3>
+    </div>
+  </div>
+  <div class="footer"></div>
+  <div class="lift">
+    <ul>
+      <li>娱乐</li>
+      <li>看片</li>
+      <li>购物</li>
+      <li>游戏</li>
+      <li>生活</li>
+      <li>借钱</li>
+      <li>星座运势</li>
+    </ul>
+  </div>
+</div>
+<script src="../../public/js/jquery.min.js"></script>
+<script>
+  (function () {
+    var liftControl = document.getElementsByTagName('li'),
+      storeys = document.getElementById('storeys').children;
+    
+    //点击楼层按钮页面滚动到指定位置;
+    for (var i = 0; i < liftControl.length; i++) {
+      liftControl[i].onclick = (function (j) {
+        return function () {
+          var val = storeys[j].offsetTop;
+          
+          animate(val);
+        }
+      }(i))
+      
+    }
+    
+  }())
+  
+  
+  //匀速动画函数
+  function animate(target) {
+    var speed = (target - scroll().top) / (600 / 20);
+    
+    go();
+    
+    function go() {
+      var current = scroll().top;
+      if (Math.abs(target - current) > Math.abs(speed)) {
+        current += speed;
+        window.scrollTo(0, current);
+        setTimeout(go, 20);
+      } else {
+        window.scrollTo(0, target);
+      }
+    }
+    
+  }
+  
+  
+  //兼容获取scrollTop
+  function scroll() {
+    
+    //ie9+ 标准浏览器
+    if (window.pageYOffset != null) {
+      return {
+        left: window.pageXOffset,
+        top: window.pageYOffset
+      }
+    }
+    
+    //声明DTD的
+    else if (document.compatMode === "CSS1Compat") {
+      return {
+        left: document.documentElement.scrollLeft,
+        top: document.documentElement.scrollTop
+      }
+    }
+    
+    //未声明DTD
+    return {
+      left: document.body.scrollLeft,
+      top: document.body.scrollTop
+    }
+  }
+</script>
+</body>
+</html>

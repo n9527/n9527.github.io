@@ -1,0 +1,140 @@
+img {
+  transition: all .5s;
+}
+img:hover {
+  transform: scale(1.02, 1.02);
+}
+.container {
+  width: 950px;
+  border-top: 3px solid #eceef4;
+  margin: 100px auto;
+}
+.container .tab-head {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.container .tab-head-item {
+  float: left;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  padding: 0 10px;
+  margin-right: 15px;
+  font-size: 16px;
+  font-family: 'microsoft yahei';
+}
+.container .tab-head-item.active {
+  background-color: #2e9900;
+}
+.container .tab-head-item.active a {
+  color: #fff;
+}
+.container .tab-content {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+.container .tab-content-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  width: 100%;
+}
+.container .tab-content-item.first {
+  display: block;
+}
+.container .tab-content-item-left {
+  float: left;
+  width: 225px;
+  height: 320px;
+}
+.container .tab-content-item-left a {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.container .tab-content-item-center {
+  float: left;
+  height: 320px;
+  width: 480px;
+  padding-left: 15px;
+}
+.container .tab-content-item-center a {
+  position: relative;
+  display: block;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.container .tab-content-item-center img {
+  display: block;
+  width: 225px;
+  height: 152px;
+}
+.container .tab-content-item-right {
+  float: left;
+  width: 225px;
+  height: 320px;
+}
+.container .tab-content-item-right a {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.container .description {
+  position: absolute;
+  left: 0;
+  bottom: -50px;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, 0, endColorstr=#cc000000, 0);
+}
+.container .description-title {
+  height: 20px;
+  line-height: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  font-size: 14px;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.container .description-content {
+  height: 40px;
+}
+.container .description-content-left {
+  float: left;
+  width: 40px;
+  height: 40px;
+  padding-left: 15px;
+}
+.container .description-content-left img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.container .description-content-right {
+  height: 40px;
+  padding-left: 65px;
+  color: #d6d6d6;
+}
+.container .description-content-right .message {
+  text-indent: 15px;
+}
+.container .description-content-right .message i {
+  margin: 0 10px;
+  color: #3f3f3f;
+}
+.container .description-content-right .des {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

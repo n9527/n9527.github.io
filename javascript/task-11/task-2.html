@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务二：表单（二）多个表单项的动态校验</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body {
+      background-color: #eee;
+    }
+    
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+      padding: 120px 0;
+      background-color: #fff;
+    }
+    
+    ul {
+      width: 700px;
+      margin: 0 auto;
+      list-style: none;
+    }
+    
+    li {
+      margin-bottom: 25px;
+    }
+    
+    label {
+      position: absolute;
+      height: 54px;
+      padding: 0 20px;
+      line-height: 54px;
+      font-size: 20px;
+      color: #aaa;
+    }
+    
+    input[type=text],
+    input[type=password] {
+      width: 516px;
+      height: 52px;
+      padding-left: 20px;
+      margin-right: 20px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 20px;
+      line-height: 52px;
+    }
+    
+    input[type=submit] {
+      width: 110px;
+      height: 54px;
+      vertical-align: top;
+      background-color: #2F79BA;
+      border: 1px solid #286CA9;
+      border-radius: 4px;
+      font-size: 20px;
+      color: #fff;
+    }
+    
+    .message {
+      line-height: 30px;
+      color: #aaa;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <ul>
+    <li>
+      <div class="input">
+        <label for="username">账号</label><input type="text" id="username">
+      </div>
+      <p class="message">长度为4~16个字符（汉字、字母、数字）</p>
+    </li>
+    <li>
+      <div class="input">
+        <label for="password">密码</label><input type="password" id="password">
+      </div>
+      <p class="message">长度为4~16个字符（字母、数字）</p>
+    </li>
+    <li>
+      <div class="input">
+        <label for="pwdValidation">确认密码</label><input type="password" id="pwdValidation">
+      </div>
+      <p class="message">请保持和第一次输入的密码一致</p>
+    </li>
+    <li>
+      <div class="input">
+        <label for="email">邮箱</label><input type="text" id="email">
+      </div>
+      <p class="message">请输入您的邮箱地址</p>
+    </li>
+    <li>
+      <div class="input">
+        <label for="tel">手机</label><input type="text" id="tel">
+      </div>
+      <p class="message">请输入你的手机号码</p>
+    </li>
+    <li>
+      <div>
+        <input type="submit" value="提交">
+      </div>
+    </li>
+  </ul>
+</div>
+
+<script>
+  (function () {
+    var input = document.getElementsByTagName('input'),
+      label = document.getElementsByTagName('label'),
+      p = document.getElementsByTagName('p'),
+      psw,
+      flag = 0;
+    
+    //循环绑定获取，失去焦点事件,submit不需要绑定这个事件所以length-1;
+    for (var i = 0; i < input.length - 1; i++) {
+      
+      input[i].onfocus = (function (j) {
+        return function () {
+          label[j].style.display = 'none';
+          this.style.borderColor = '#aaa';
+          switch (j) {
+            case 0:
+              p[j].innerHTML = '长度为4~16个字符（汉字、字母、数字）';
+              break;
+            case 1:
+              p[j].innerHTML = '长度为4~16个字符（字母、数字）';
+              break;
+            case 2:
+              p[j].innerHTML = '请保持和第一次输入的密码一致';
+              break;
+            case 3:
+              p[j].innerHTML = '请输入您的邮箱地址';
+              break;
+            case 4:
+              p[j].innerHTML = '请输入你的手机号码';
+              break;
+          }
+          p[j].style.visibility = 'visible';
+          p[j].style.color = '#aaa';
+        }
+      }(i))
+      
+      input[i].onblur = (function (j) {
+        return function () {
+          var usernameReg = /^[a-zA-Z0-9]{4,16}$/,
+            emailReg = /^[\w\-\.]+\@[\w]+\.[\w]{2,4}$/,
+            telReg = /^((13[0-9])|(15[^4,\D])|(18[0,5-9]))\d{8}$/;
+          
+          if (this.value === '') {
+            label[j].style.display = 'block';
+            empty(j);
+            return;
+          }
+          
+          switch (j) {
+            case 0:
+              if (usernameReg.test(this.value)) {
+                success(0);
+              } else {
+                error(0);
+              }
+              break;
+            case 1:
+              if (usernameReg.test(this.value)) {
+                psw = this.value;
+                success(1);
+              } else {
+                error(1);
+              }
+              break;
+            case 2:
+              if (this.value !== psw) {
+                error(2);
+              } else {
+                success(2);
+              }
+              break;
+            case 3:
+              if (emailReg.test(this.value)) {
+                success(3);
+              } else {
+                error(3);
+              }
+              break;
+            case 4:
+              if (telReg.test(this.value)) {
+                success(4);
+              } else {
+                error(4);
+              }
+              break;
+          }
+          
+        }
+      }(i))
+    }
+    
+    //提交按钮事件
+    input[input.length - 1].onclick = function () {
+      if (flag === 5) {
+        alert('提交成功');
+      } else {
+        alert('输入有误，提交失败！请重新输入')
+      }
+    }
+    
+    //内容为空执行函数
+    function empty(index) {
+      input[index].style.borderColor = 'red';
+      p[index].style.color = 'red';
+      p[index].innerHTML = '内容不能为空';
+    }
+    
+    //验证失败执行函数
+    function error(index) {
+      input[index].style.borderColor = 'red';
+      p[index].style.color = 'red';
+      if (index === 2) {
+        p[index].innerHTML = '两次输入的密码不一致，请重新输入';
+      } else {
+        p[index].innerHTML = '格式错误,请重新输入';
+      }
+    }
+    
+    //验证成功执行函数
+    function success(index) {
+      flag++;
+      input[index].style.borderColor = 'green';
+      p[index].style.color = 'green';
+      p[index].innerHTML = '输入正确,请继续下一步';
+    }
+    
+  }());
+</script>
+</body>
+</html>

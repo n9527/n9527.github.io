@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>左右移动式轮播图</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    img {
+      border: 0;
+      vertical-align: middle;
+    }
+    
+    .slider {
+      position: relative;
+      width: 790px;
+      height: 340px;
+      margin: 100px auto;
+      overflow: hidden;
+    }
+    
+    .slider-list {
+      position: absolute;
+      left: -790px;
+      top: 0;
+      width: 800%;
+      height: 100%;
+    }
+    
+    .slider-list-item {
+      float: left;
+      width: 790px;
+      height: 100%;
+    }
+    
+    .slider-list-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .slider-list-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .slider-indicator {
+      position: absolute;
+      left: 0;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .slider-indicator-btn {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+    
+    .slider-indicator-btn.active {
+      background-color: #f00;
+    }
+    
+    .slider-control {
+      display: none;
+      position: absolute;
+      top: 50%;
+      width: 30px;
+      height: 60px;
+      margin-top: -30px;
+      line-height: 60px;
+      text-align: center;
+      color: #fff;
+      font-size: 22px;
+      background-color: rgba(0, 0, 0, 0.2);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000, endColorstr=#33000000)
+    }
+    
+    .slider-control:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000, endColorstr=#7f000000)
+    }
+    
+    .slider-control-next {
+      right: 0;
+    }
+    
+    .slider-control-prev {
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="slider">
+  <ul class="slider-list">
+    <li class="slider-list-item"><a href="#"><img src="../images/6.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/1.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/2.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/3.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/4.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/5.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/6.jpg" alt=""></a></li>
+    <li class="slider-list-item"><a href="#"><img src="../images/1.jpg" alt=""></a></li>
+  </ul>
+  <div class="slider-indicator"><i class="slider-indicator-btn active"></i><i class="slider-indicator-btn"></i><i
+    class="slider-indicator-btn"></i><i class="slider-indicator-btn"></i><i class="slider-indicator-btn"></i><i
+    class="slider-indicator-btn"></i></div>
+  <a href="javascript:void(0)" class="slider-control slider-control-prev">&lt;</a>
+  <a href="javascript:void(0)" class="slider-control slider-control-next">&gt;</a>
+</div>
+
+<script src="../../public/js/jquery.min.js"></script>
+<script>
+  
+  //插件
+  $.fn.slider = function (number) {
+    var container = $(this),
+      sliderList = container.find('.slider-list'),
+      indicator = container.find('.slider-indicator-btn'),
+      prev = container.find('.slider-control-prev'),
+      next = container.find('.slider-control-next'),
+      width = container.width(),
+      timer = null,
+      index = 1,
+      distance = 0,
+      time = 3000;
+    
+    //开启自动轮播
+    autoPlay();
+    
+    //鼠标进入停止自动播放
+    container.on('mouseenter', function () {
+      clearInterval(timer);
+      prev.show();
+      next.show();
+    });
+    
+    //鼠标离开重新开启自动播放
+    container.on('mouseleave', function () {
+      
+      autoPlay();
+      
+      prev.hide();
+      
+      next.hide();
+    });
+    
+    next.on('click', play);
+    
+    prev.on('click', playBack);
+    
+    indicator.on('mouseenter', indicatorHandler);
+    
+    //定时器自动播放
+    function autoPlay() {
+      timer = setInterval(play, time);
+    }
+    
+    //index--
+    function playBack() {
+      index--;
+      if (index < 1) {
+        index = number;
+        var value = (number + 1) * width * -1;
+        $(sliderList).css('left', value);
+      }
+      animate();
+    }
+    
+    //index++
+    function play() {
+      index++;
+      if (index > number) {
+        sliderList.css('left', 0);
+        index = 1;
+      }
+      animate();
+    }
+    
+    //indicatorBtn执行函数
+    function indicatorHandler() {
+      index = $(this).index() + 1;
+      animate();
+    }
+    
+    //动画函数
+    function animate() {
+      
+      //每次移动的距离
+      distance = width * index * -1;
+      
+      //移动图片
+      sliderList.animate({
+        left: distance
+      }, 300);
+      
+      //indecator同步
+      indicator.removeClass('active').eq(index - 1).addClass('active');
+    }
+  };
+  
+  //调用插件实现效果
+  $('.slider').slider(6);
+</script>
+</body>
+</html>

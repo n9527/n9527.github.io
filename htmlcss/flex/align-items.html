@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>align-items</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: #eee;
+    }
+    
+    section {
+      margin: 50px auto;
+      border: 1px solid #ccc;
+    }
+    
+    ul {
+      display: flex;
+      list-style: none;
+      padding: 20px;
+    }
+    
+    li {
+      width: 50px;
+      margin: 0 30px;
+      background-color: red;
+      color: #fff;
+    }
+    
+    li:nth-child(1) {
+      height: 50px;
+      line-height: 50px;
+    }
+    
+    li:nth-child(2) {
+      height: 70px;
+      line-height: 70px;
+    }
+    
+    li:nth-child(3) {
+      height: 100px;
+      line-height: 100px;
+    }
+    
+    /*align-items: center; 父级垂直居中对齐*/
+    section:nth-child(1) ul {
+      align-items: center;
+    }
+    
+    /*align-items: flex-end; 父级的底对齐*/
+    section:nth-child(2) ul {
+      align-items: flex-end;
+    }
+    
+    /*align-items: flex-start; 默认的,父级的顶对齐*/
+    section:nth-child(3) ul {
+      align-items: flex-start;
+    }
+    
+    /*align-items: baseline; 子级的基线对齐*/
+    section:nth-child(4) ul {
+      align-items: baseline;
+    }
+    
+    /*align-items: stretch; 当子级没有高度的时候继承父级的高度*/
+    section:nth-child(5) ul {
+      align-items: stretch;
+    }
+  </style>
+</head>
+<body>
+<h1>align-items</h1>
+<section>
+  <h3>align-items: center; 父级垂直居中对齐</h3>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</section>
+<section>
+  <h3>align-items: flex-end; 父级的底对齐</h3>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</section>
+<section>
+  <h3>align-items: flex-start; 默认父级的顶对齐</h3>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</section>
+<section>
+  <h3>align-items: baseline; 子级的第一行基线对齐</h3>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</section>
+<section>
+  <h3>align-items: stretch; 子级没有高度的时候充满父级的高度</h3>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</section>
+</body>
+</html>

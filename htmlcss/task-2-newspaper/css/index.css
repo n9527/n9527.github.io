@@ -1,0 +1,338 @@
+body {
+  background-color: #C8C8C8;
+}
+.container {
+  width: 980px;
+  margin: 100px auto;
+  background-color: #fff;
+}
+.container .w {
+  width: 892px;
+  margin: 0 auto;
+}
+/*顶部条*/
+.top-bar {
+  font-size: 12px;
+  font-family: Simhei;
+  border-bottom: 2px solid #928E8C;
+  margin-bottom: 34px;
+}
+.top-bar-left {
+  float: left;
+  width: 110px;
+  height: 21px;
+  background-color: #D45C5B;
+  padding-top: 40px;
+}
+.top-bar-left p {
+  height: 21px;
+  line-height: 21px;
+  color: #fff;
+}
+.top-bar-right {
+  float: right;
+  height: 21px;
+  padding-top: 40px;
+}
+.top-bar-right p {
+  height: 21px;
+  line-height: 21px;
+  color: #D45C5B;
+}
+/*头部*/
+.head {
+  margin-bottom: 38px;
+}
+.head-left {
+  position: relative;
+  float: left;
+}
+.head-left img {
+  display: block;
+}
+.head-left .mask {
+  position: absolute;
+  width: 191px;
+  height: 301px;
+}
+.head-left .mask-left {
+  left: 0;
+  top: 0;
+  background-color: #A0C5AC;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+.head-left .mask-right {
+  right: 0;
+  top: 0;
+  background-color: #E6BAC0;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+.head-right {
+  float: right;
+  width: 203px;
+  padding-top: 6px;
+  border-top: 2px solid #CC7F90;
+}
+.head-right h3 {
+  font: 24px/30px 'microsoft yahei';
+  font-variant: small-caps;
+  color: #000;
+  text-decoration: underline;
+}
+.head-right .about {
+  padding-top: 3px;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: '楷体', '\u6977\u4F53';
+  color: #666767;
+}
+.head-right .p-num {
+  font: oblique 116px/1 'microsoft yahei';
+  color: #75b86b;
+  margin-left: -16px;
+  margin-top: 25px;
+}
+.head-right dl {
+  margin-top: 10px;
+}
+.head-right dt {
+  float: left;
+  font: 55px/1 "microsoft yahei";
+  color: #CC8090;
+}
+.head-right dd {
+  height: 35px;
+  padding-top: 20px;
+}
+.head-right .css {
+  font: 21px/1 "microsoft yahei";
+  color: #CC8090;
+}
+.head-right .csscss {
+  font: 12px/1 "microsoft yahei";
+  color: #A7A3A1;
+}
+/*三栏*/
+.column {
+  margin-bottom: 68px;
+}
+.column-item {
+  float: left;
+  width: 228px;
+  height: 170px;
+  margin-right: 25px;
+}
+.column-item-title {
+  margin-bottom: 8px;
+}
+.column-item-title h3 {
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "microsoft yahei";
+  text-decoration: underline;
+}
+.column-item-content p {
+  font: 12px/16px "microsoft yahei";
+}
+.column-item-left .column-item-title {
+  color: #418B58;
+}
+.column-item-center .column-item-title {
+  color: #D1984E;
+}
+.column-item-right {
+  position: relative;
+}
+.column-item-right .column-item-title {
+  color: #CC7680;
+}
+.column-item .content-top p {
+  line-height: 21px;
+}
+.column-item .content-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.column-item .content-bottom p {
+  line-height: 21px;
+  color: #221814;
+}
+.column-item .content-bottom span {
+  color: #CC7680;
+}
+/*文章*/
+.article {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #928E8C;
+}
+.article-left {
+  float: left;
+  width: 415px;
+}
+.article-left-title {
+  border-bottom: 2px solid #10446B;
+}
+.article-left-title .the {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 50px;
+  font-family: Simhei;
+  color: #F4E326;
+}
+.article-left-title .row-1 {
+  font: 700 42px/40px Simhei;
+  color: #11456b;
+}
+.article-left-title .row-2 {
+  padding: 7px 0;
+  font: 700 33px/1 Simhei;
+  color: #11456b;
+}
+.article-left-content {
+  position: relative;
+  padding-top: 24px;
+}
+.article-left-content p.indent {
+  text-indent: 2em;
+}
+.article-left-content p {
+  text-align: justify;
+  line-height: 16px;
+}
+.article-left-content .first {
+  float: left;
+  font: 70px/1 "microsoft yahei";
+  color: #F5E327;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.article-left-content img {
+  float: right;
+  margin: 16px 0 16px 16px;
+}
+.article-right {
+  float: right;
+  width: 458px;
+}
+.article-right-top {
+  margin-bottom: 30px;
+  position: relative;
+}
+.article-right-top .title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 420px;
+  height: 53px;
+  padding-left: 38px;
+  padding-top: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000, 0, endColorstr=#66000000, 0);
+}
+.article-right-top .title h3 {
+  float: left;
+  height: 44px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-left: 2px solid #72B069;
+  line-height: 44px;
+  font-size: 26px;
+  font-family: "microsoft yahei";
+  color: #fff;
+}
+.article-right-top .title p {
+  float: left;
+  padding-top: 20px;
+  font: oblique 12px/1.4 "microsoft yahei";
+  color: #72B069;
+}
+.article-right-bottom {
+  background-color: #EDECD6;
+  width: 459px;
+  height: 318px;
+}
+.article-right-bottom ul {
+  padding: 20px 0 12px 30px;
+}
+.article-right-bottom ul p {
+  position: relative;
+  padding-left: 15px;
+  font: 16px/40px "SimSun", "宋体";
+  color: #5a5b5b;
+}
+.article-right-bottom ul p:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  width: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 9px solid #10456B;
+}
+.article-right-bottom ul span {
+  font-style: oblique;
+  font-size: 12px;
+}
+.article-right-bottom .bottom-left {
+  float: left;
+  width: 260px;
+  height: 120px;
+  padding-top: 40px;
+  margin-right: 13px;
+  background-color: #D45C5B;
+}
+.article-right-bottom .bottom-left dt {
+  float: left;
+  height: 86px;
+  padding-left: 12px;
+  padding-right: 3px;
+  font: 110px/84px "microsoft yahei";
+  color: #fff;
+}
+.article-right-bottom .bottom-left dd {
+  float: left;
+  height: 86px;
+  padding-left: 8px;
+  border-left: 2px solid #fff;
+}
+.article-right-bottom .bottom-left .nth-1 {
+  padding: 4px 0;
+  font: oblique 21px/24px "Simhei";
+  color: #fff;
+}
+.article-right-bottom .bottom-left .nth-2 {
+  font: 12px/1 "Simhei";
+  color: #fff;
+}
+.article-right-bottom .bottom-right {
+  float: left;
+  width: 165px;
+  padding-top: 15px;
+  font: oblique 14px/16px Simhei;
+  color: #5a5b5b;
+}
+.article-right-bottom .bottom-right span {
+  font: 72px/16px Simhei;
+  color: #d45d5c;
+}
+.article-right-bottom .bottom-right span.first {
+  float: left;
+  margin: 17px 6px -17px -37px;
+}
+.article-right-bottom .bottom-right span.last {
+  float: right;
+  margin: 28px -38px 0 0;
+}
+/*底部*/
+.footer {
+  height: 66px;
+}
+.footer p {
+  text-align: right;
+  color: #D45C5B;
+}

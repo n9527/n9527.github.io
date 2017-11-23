@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务六：UI组件之浮出层,鼠标拖动</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body {
+      height: 1000px;
+    }
+    
+    .container {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .mask-control {
+      position: fixed;
+      left: 0;
+      bottom: 50px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .mask-control input {
+      height: 50px;
+      width: 200px;
+      background-color: #ccc;
+    }
+    
+    .mask {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .2);
+    }
+    
+    .mask .confirm {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 660px;
+      height: 320px;
+      margin-top: -160px;
+      margin-left: -330px;
+      border: 1px solid #000;
+      background-color: #fff;
+    }
+    
+    h3 {
+      height: 50px;
+      line-height: 50px;
+      padding-left: 10px;
+      background-color: red;
+      color: #fff;
+      cursor: all-scroll;
+    }
+    
+    .confirm-content {
+      position: relative;
+      height: 240px;
+      padding-top: 30px;
+      padding-left: 25px;
+    }
+    
+    .confirm-content input {
+      position: absolute;
+      width: 160px;
+      height: 55px;
+    }
+    
+    .confirm-btn {
+      bottom: 20px;
+      right: 200px;
+    }
+    
+    .cancel-btn {
+      bottom: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="mask-control">
+    <input type="button" value="弹出提示框" id="control">
+  </div>
+  <div class="mask" id="wrap">
+    <div class="confirm" id="confirm">
+      <h3>这是一个浮出层</h3>
+      <div class="confirm-content">
+        <p>这是一个浮出层</p>
+        <input type="button" value="确认" class="confirm-btn">
+        <input type="button" value="取消" class="cancel-btn">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /*
+1. 浮出层的中心默认在屏幕正中
+2. 当浮出层显示时，屏幕滚动时，浮出层始终保持位置固定在屏幕正中，不随屏幕滚动而变化位置。或者禁止页面在有浮出层出现时滚动
+3. 当浮出层显示时，点击浮出层以外的部分，默认为关闭浮出层。可以实现一个半透明的遮罩来挡住浮出层外的部分
+4. 浮出层的样式、内容和逻辑尽量解耦
+5. 提供使用JavaScript控制浮出层展现和关闭的接口
+6. 浮出层的窗口大小可以是一个默认固定值，也可以是随内容变化而自适应变化，也可以是通过接口参数进行调整，自行根据自己能力进行选择
+7. 有能力的同学可以实现浮出层的拖拽移动浮出窗口位置以及拖拽边缘来放大缩小浮出窗口的功能*/
+  
+  (function () {
+    var input = document.getElementsByTagName('input'),
+      mask = document.getElementById('wrap'),
+      h3 = document.getElementsByTagName('h3')[0],
+      confirm = document.getElementById('confirm');
+    
+    //弹出遮罩层
+    input[0].onclick = function () {
+      mask.style.display = 'block';
+    }
+    
+    //点击按钮隐藏遮罩层
+    input[1].onclick = hideMask;
+    
+    //点击按钮隐藏遮罩层
+    input[2].onclick = hideMask;
+    
+    //点击空白区域隐藏遮罩层
+    mask.onclick = function (event) {
+      var e = event || window.event,
+        target = e.target ? e.target : e.srcElement;
+      
+      //按钮的点击事件会冒泡到这里
+      if (target.className === 'mask') {
+        hideMask();
+      }
+    }
+    
+    //移动盒子
+    h3.onmousedown = function (e) {
+      var e = e || window.event;
+      
+      //获取鼠标在页面的位置pageY = scrollTop + clientY;
+      //获取鼠标在盒子的位置boxY = pageY - box.offsetTop;
+      var pageY = scroll().top + e.clientY,
+        pageX = scroll().left + e.clientX,
+        boxY = pageY - confirm.offsetTop,
+        boxX = pageX - confirm.offsetLeft;
+      
+      //鼠标按下事件+鼠标移动事件
+      document.onmousemove = function (e) {
+        var e = e || window.event;
+        
+        //每次移动都要重新获取鼠标在页面的位置
+        pageY = scroll().top + e.clientY;
+        pageX = scroll().left + e.clientX;
+        
+        //盒子移动的位置 = 鼠标在页面中的位置 - 鼠标在盒子中的位置
+        var moveX = pageX - boxX,
+          moveY = pageY - boxY;
+        
+        //盒子移动的最大值 = 浏览器窗口的大小 - 盒子的宽高
+        var maxX = document.documentElement.clientWidth - confirm.offsetWidth,
+          maxY = document.documentElement.clientHeight - confirm.offsetHeight;
+        
+        //限制最大最小值
+        moveX = moveX > maxX ? maxX : moveX;
+        moveY = moveY > maxY ? maxY : moveY;
+        moveY = moveY < 0 ? 0 : moveY;
+        moveX = moveX < 0 ? 0 : moveX;
+        
+        //移动盒子
+        confirm.style.margin = '0';
+        confirm.style.left = moveX + 'px';
+        confirm.style.top = moveY + 'px';
+        
+        //取消文本选中
+        window.getSelection ? window.getSelection().removeAllRanges()
+          : document.selection.empty();
+      }
+    }
+    
+    h3.onmouseup = function () {
+      document.onmousemove = null;
+    }
+    
+    function hideMask() {
+      mask.style.display = 'none';
+    }
+    
+    
+  }())
+  
+  //兼容获取scroll
+  function scroll() {
+    
+    //ie9+ 标准浏览器
+    if (window.pageYOffset != null) {
+      return {
+        left: window.pageXOffset,
+        top: window.pageYOffset
+      }
+    }
+    
+    //声明DTD的
+    else if (document.compatMode === "CSS1Compat") {
+      return {
+        left: document.documentElement.scrollLeft,
+        top: document.documentElement.scrollTop
+      }
+    }
+    
+    //未声明DTD
+    return {
+      left: document.body.scrollLeft,
+      top: document.body.scrollTop
+    }
+  }
+</script>
+</body>
+
+</html>

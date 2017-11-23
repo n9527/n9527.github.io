@@ -1,0 +1,689 @@
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+/*顶部条*/
+.top-bar {
+  height: 57px;
+  padding-left: 50px;
+  padding-right: 93px;
+  line-height: 57px;
+  background-color: #228ac0;
+}
+.top-bar-logo {
+  float: left;
+}
+.top-bar-search {
+  position: relative;
+  float: right;
+  margin-right: 21px;
+}
+.top-bar-search input[type=text] {
+  width: 273px;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 40px;
+  border-radius: 14px;
+}
+.top-bar-search .search-icon {
+  display: block;
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  margin-top: -8px;
+  background: url(../images/sprite.fw.png) 0 -37px;
+}
+.top-bar-login {
+  float: right;
+  position: relative;
+  height: 100%;
+  padding-left: 20px;
+}
+.top-bar-login a {
+  font-family: "microsoft yahei";
+  color: #fff;
+}
+.top-bar-login .login-icon {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 15px;
+  height: 16px;
+  margin-top: -8px;
+  background: url(../images/sprite.fw.png) 0 -190px;
+}
+/*左侧菜单*/
+.userinfo {
+  float: left;
+  width: 259px;
+  min-height: 1213px;
+  background-color: #2A2E3D;
+  border-right: 1px solid #515561;
+  font-family: Simhei;
+}
+.userinfo-head {
+  height: 150px;
+  padding-top: 18px;
+  padding-left: 45px;
+}
+.userinfo-head a {
+  display: block;
+}
+.userinfo-head .user-pic {
+  float: left;
+  width: 47px;
+  height: 47px;
+  padding: 3px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+}
+.userinfo-head .user-pic img {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+}
+.userinfo-head .username {
+  float: left;
+  margin-left: 10px;
+  font: 16px/57px Simhei;
+  color: #F6F5F4;
+}
+.userinfo-head dt {
+  margin-bottom: 24px;
+}
+.userinfo-head dd {
+  float: left;
+  padding-left: 30px;
+}
+.userinfo-head .first {
+  border-right: 2px solid #313545;
+  padding-left: 18px;
+  padding-right: 30px;
+}
+.userinfo-head .collect,
+.userinfo-head .fensi {
+  color: #6D8095;
+}
+.userinfo-head .fensi-number,
+.userinfo-head .collect-number {
+  font-size: 16px;
+  color: #6D8095;
+}
+.userinfo-content {
+  color: #6D8095;
+}
+.userinfo-content .current-color {
+  color: #ECECEF;
+}
+.userinfo-content i {
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  background: url(../images/sprite.fw.png) 0 -209px;
+}
+.userinfo-content h3 {
+  position: relative;
+  cursor: default;
+}
+.userinfo-content h3 > i {
+  left: -25px;
+}
+.userinfo-content h4 {
+  position: relative;
+}
+.userinfo-content h4 .folder {
+  left: -15px;
+  background-position: 0 -323px;
+}
+.userinfo-content h4 .arrow {
+  left: -34px;
+  background: url(../images/sj.png);
+}
+.userinfo-content .current-color .folder {
+  background-position: 0 -18px;
+}
+.userinfo-content .current-color .arrow {
+  background-position: 0 -27px;
+}
+.userinfo-content dl {
+  padding: 6px 0 6px 30px;
+}
+.userinfo-content dl.last {
+  padding-bottom: 0;
+}
+.userinfo-content dd {
+  position: relative;
+  padding-left: 14px;
+  margin-top: 10px;
+  line-height: 20px;
+}
+.userinfo-content dd i {
+  left: 0;
+  background: url(../images/sprite.fw.png) 0 -83px;
+}
+.userinfo-content dd.current-color i {
+  background-position: 0 -64px;
+}
+.userinfo-content .file-type > li {
+  padding: 14px 0 14px 70px;
+}
+.userinfo-content .file-type > li:hover,
+.userinfo-content .file-type > li.current {
+  background-color: #383D4E;
+}
+.userinfo-content .file-type-form h3 i {
+  background-position: 0 -102px;
+}
+.userinfo-content .file-type-share h3 i {
+  background-position: 0 -168px;
+}
+.userinfo-content .file-type- h3 i {
+  background-position: 0 -102px;
+}
+.userinfo-content .file-type-form h3 i {
+  background-position: 0 -102px;
+}
+.userinfo-content .file-type-account h3 i {
+  background-position: 0 -249px;
+}
+/*右侧主体*/
+.file {
+  height: 1213px;
+  overflow: hidden;
+  background-color: #EEEEED;
+}
+.file-directory {
+  height: 31px;
+  padding-left: 26px;
+  background-color: #fff;
+  font: 12px/31px Simhei;
+  color: #AAAAA9;
+}
+.file-directory span {
+  color: #6898C2;
+}
+.file-content {
+  width: 890px;
+  padding-top: 19px;
+  padding-left: 59px;
+  /*搜索部分*/
+  /*价格部分*/
+  /*统计部分*/
+  /*最下面的*/
+}
+.file-content-search {
+  height: 69px;
+  padding-top: 15px;
+  margin-bottom: 8px;
+  background-color: #fff;
+  border: 1px solid #D8D9DB;
+}
+.file-content-search p {
+  margin-bottom: 5px;
+}
+.file-content-search select {
+  height: 25px;
+  font: 12px/25px Simhei;
+  color: #323232;
+}
+.file-content-search label {
+  margin-right: 15px;
+  font: 12px/25px Simhei;
+  color: #AAAAA9;
+}
+.file-content-search .search-type {
+  float: left;
+  margin-right: 38px;
+  padding-left: 28px;
+}
+.file-content-search .search-type select {
+  width: 70px;
+  height: 25px;
+}
+.file-content-search .search-object {
+  position: relative;
+  float: left;
+  margin-right: 30px;
+  padding-right: 30px;
+}
+.file-content-search .search-object button {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  width: 28px;
+  height: 38px;
+  background: url(../images/sprite.fw.png) 0 -271px;
+}
+.file-content-search .search-object select {
+  width: 121px;
+}
+.file-content-search .search-date {
+  float: left;
+  margin-right: 28px;
+}
+.file-content-search .search-date input[type=text] {
+  width: 109px;
+  height: 23px;
+  margin-right: 15px;
+  padding-left: 10px;
+  line-height: 23px;
+  border: 1px solid #E1E1E1;
+  font: 12px/25px Simhei;
+}
+.file-content-search .search-date select[id=totolTime] {
+  width: 70px;
+}
+.file-content-search .search-date select[id=number] {
+  width: 70px;
+  margin-right: 13px;
+}
+.file-content-search .search-date select[id=turnover] {
+  width: 120px;
+}
+.file-content-search .search-submit {
+  padding-top: 16px;
+}
+.file-content-search .search-submit input[type=submit] {
+  width: 51px;
+  height: 25px;
+  background-color: #388ac1;
+  color: #fff;
+  font-family: Simhei;
+}
+.file-content-price {
+  margin-bottom: 17px;
+  font-family: "microsoft yahei";
+}
+.file-content-price .slider {
+  float: left;
+}
+.file-content-price .slider-control {
+  float: left;
+  width: 29px;
+  height: 63px;
+  margin-right: 5px;
+  line-height: 63px;
+  background-color: #fff;
+  border-left: 1px solid #D8D9DB;
+  border-top: 1px solid #D8D9DB;
+  text-align: center;
+  font-size: 17px;
+  color: #ABABAB;
+}
+.file-content-price ul {
+  float: left;
+}
+.file-content-price li {
+  float: left;
+  width: 109px;
+  height: 50px;
+  padding-top: 13px;
+  margin-right: 5px;
+  background-color: #fff;
+  border-left: 1px solid #D8D9DB;
+  border-top: 1px solid #D8D9DB;
+  text-align: center;
+  color: #323232;
+}
+.file-content-price .search-history {
+  position: relative;
+  float: left;
+  width: 69px;
+  height: 63px;
+  padding-left: 60px;
+  line-height: 63px;
+  border-left: 1px solid #D8D9DB;
+  border-top: 1px solid #D8D9DB;
+  background-color: #fff;
+}
+.file-content-price .search-history a {
+  color: #cacdd0;
+}
+.file-content-price .search-history-icon {
+  display: block;
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  width: 32px;
+  height: 32px;
+  background: url(../images/sprite.fw.png) 0 -125px;
+}
+.file-content-statistics {
+  margin-bottom: 14px;
+}
+.file-content-statistics-title h3 {
+  height: 22px;
+  color: #43B29E;
+  font: 12px/22px "microsoft yahei";
+}
+.file-content-statistics-content .statistics-business {
+  margin-bottom: 14px;
+}
+.file-content-statistics-content .statistics-business li {
+  position: relative;
+  float: left;
+  width: 189px;
+  height: 59px;
+  padding-top: 13px;
+  padding-left: 8px;
+  margin-right: 27px;
+  border: 1px solid #D8D9DB;
+  border-left: 4px solid #43B29E;
+  font-family: Simhei;
+}
+.file-content-statistics-content .statistics-business p {
+  height: 24px;
+  line-height: 24px;
+}
+.file-content-statistics-content .statistics-business .val {
+  color: #323232;
+}
+.file-content-statistics-content .statistics-business .name {
+  color: #AAAAA9;
+}
+.file-content-statistics-content .statistics-business .light {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  width: 61px;
+  height: 47px;
+  background-color: #43B29E;
+}
+.file-content-statistics-content .statistics-business .statistics2 {
+  border-left-color: #388AC1;
+}
+.file-content-statistics-content .statistics-business .statistics2 .light {
+  background-color: #388AC1;
+}
+.file-content-statistics-content .statistics-business .statistics3 {
+  border-left-color: #CF4A36;
+}
+.file-content-statistics-content .statistics-business .statistics3 .light {
+  background-color: #CF4A36;
+}
+.file-content-statistics-content .statistics-business .statistics4 {
+  margin-right: 0;
+  border-left-color: #E2CD47;
+}
+.file-content-statistics-content .statistics-business .statistics4 .light {
+  background-color: #E2CD47;
+}
+.file-content-statistics-content .statistics-project-list {
+  float: left;
+  width: 529px;
+  border: 1px solid #CBCBCB;
+  margin-right: 8px;
+}
+.file-content-statistics-content .statistics-project-list-title {
+  height: 39px;
+  padding-left: 20px;
+  line-height: 39px;
+  border-bottom: 1px solid #D8D9DB;
+}
+.file-content-statistics-content .statistics-project-list-content {
+  padding-left: 20px;
+  padding-bottom: 23px;
+  background-color: #fff;
+}
+.file-content-statistics-content .statistics-project-list-content .tab-head {
+  padding-top: 14px;
+}
+.file-content-statistics-content .statistics-project-list-content .tab-head-item {
+  display: inline-block;
+  width: 81px;
+  height: 25px;
+  line-height: 25px;
+  margin-right: 4px;
+  border: 1px solid transparent;
+  background-color: #EDEDF0;
+  text-align: center;
+}
+.file-content-statistics-content .statistics-project-list-content .tab-content {
+  height: 221px;
+  width: 464px;
+  padding-top: 28px;
+  padding-left: 26px;
+  border: 1px solid #CACBCB;
+}
+.file-content-statistics-content .statistics-project-list-content td {
+  width: 98px;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #D8D9DB;
+  text-align: center;
+}
+.file-content-statistics-content .statistics-project-info {
+  float: left;
+  width: 349px;
+  border: 1px solid #CBCBCB;
+  font-family: "microsoft yahei";
+}
+.file-content-statistics-content .statistics-project-info-title {
+  height: 40px;
+  padding-left: 20px;
+  line-height: 39px;
+}
+.file-content-statistics-content .statistics-project-info-content {
+  height: 301px;
+  padding-top: 14px;
+  padding-left: 34px;
+  background-color: #fff;
+}
+.file-content-statistics-content .statistics-project-info-content caption {
+  padding-left: 17px;
+  padding-bottom: 6px;
+  text-align: left;
+  border-bottom: 1px solid #E7E8E8;
+}
+.file-content-statistics-content .statistics-project-info-content td {
+  height: 43px;
+  padding-left: 15px;
+}
+.file-content-statistics-content .statistics-project-info-content td.nth-1 {
+  width: 80px;
+  border-right: 1px solid #E7E8E8;
+}
+.file-content-statistics-content .statistics-project-info-content td.nth-2 {
+  width: 185px;
+}
+.file-content-statistics-content .statistics-project-info-content dt {
+  color: #C2C2C1;
+}
+.file-content-statistics-content .statistics-project-info-content dd {
+  color: #535353;
+}
+.file-content-statistics-content .statistics-project-info-content .description {
+  height: 144px;
+  padding-left: 15px;
+  line-height: 20px;
+  border-top: 1px solid #E7E8E8;
+}
+.file-content-statistics-content .statistics-project-info-content .search {
+  width: 281px;
+  padding-top: 5px;
+  line-height: 25px;
+  border-top: 1px solid #E7E8E8;
+}
+.file-content-statistics-content .statistics-project-info-content label {
+  color: #C2C2C1;
+}
+.file-content-statistics-content .statistics-project-info-content input[type=submit] {
+  width: 50px;
+  height: 25px;
+  background-color: #388AC1;
+  font-family: Simhei;
+  color: #fff;
+}
+.file-content-extra h3 {
+  height: 40px;
+  padding-left: 20px;
+  border-bottom: 1px solid #E7E8EB;
+  font: 12px/40px "microsoft yahei";
+  color: #AAAAA9;
+}
+.file-content-extra-calendar {
+  float: left;
+  width: 349px;
+  border: 1px solid #CBCBCB;
+  font-family: Simhei;
+}
+.file-content-extra-calendar .calendar-content {
+  height: 296px;
+  padding: 10px 20px;
+  background-color: #fff;
+}
+.file-content-extra-calendar .calendar-content-select {
+  margin-bottom: 10px;
+}
+.file-content-extra-calendar .calendar-content-select select {
+  height: 22px;
+  margin-right: 6px;
+}
+.file-content-extra-calendar .calendar-content-select select[name=year] {
+  width: 64px;
+}
+.file-content-extra-calendar .calendar-content-select select[name=month] {
+  width: 86px;
+}
+.file-content-extra-calendar .calendar-content-select select[name=label] {
+  width: 75px;
+}
+.file-content-extra-calendar .calendar-content-backtoday {
+  display: block;
+  width: 62px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #CACBCB;
+}
+.file-content-extra-calendar .calendar-content-table {
+  width: 100%;
+}
+.file-content-extra-calendar .calendar-content-table th {
+  height: 29px;
+}
+.file-content-extra-calendar .calendar-content-table .wrap {
+  width: 39px;
+  height: 39px;
+  margin: 0 auto;
+  border: 1px solid transparent;
+  text-align: center;
+}
+.file-content-extra-calendar .calendar-content-table .wrap.current {
+  border-color: #F8D564;
+}
+.file-content-extra-calendar .calendar-content-table .daynumber {
+  color: #323232;
+}
+.file-content-extra-calendar .calendar-content-table .almanac {
+  color: #323232;
+}
+.file-content-extra-calendar .calendar-content-table .weekend {
+  color: #C9151D;
+}
+.file-content-extra-car {
+  float: right;
+  width: 529px;
+  border: 1px solid #CBCBCB;
+  font-family: Simhei;
+}
+.file-content-extra-car .car-content {
+  height: 298px;
+  padding-left: 40px;
+  padding-top: 18px;
+  background-color: #fff;
+}
+.file-content-extra-car td,
+.file-content-extra-car th {
+  text-align: center;
+  border: 1px solid #C3C4C4;
+}
+.file-content-extra-car th {
+  height: 26px;
+  padding: 0;
+  font-size: 13px;
+  color: #221814;
+}
+.file-content-extra-car tr {
+  cursor: pointer;
+}
+.file-content-extra-car tr:hover {
+  background-color: #F4F5F7;
+}
+.file-content-extra-car .row-1 .light {
+  width: 140px;
+  background-color: #EC6D51;
+}
+.file-content-extra-car .row-2 .light {
+  width: 120px;
+  background-color: #EF8150;
+}
+.file-content-extra-car .row-3 .light {
+  width: 100px;
+  background-color: #F19E4F;
+}
+.file-content-extra-car .row-4 .light {
+  width: 96px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car .row-5 .light {
+  width: 86px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car .row-6 .light {
+  width: 80px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car .row-7 .light {
+  width: 70px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car .row-8 .light {
+  width: 64px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car .row-9 .light {
+  width: 60px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car .row-10 .light {
+  width: 55px;
+  background-color: #7FCBF0;
+}
+.file-content-extra-car td {
+  height: 23px;
+  padding: 0;
+  color: #323232;
+}
+.file-content-extra-car .bar {
+  position: absolute;
+  left: 104px;
+  top: 50%;
+  width: 167px;
+  height: 4px;
+  margin-top: -2px;
+  background-color: #DCDCDC;
+}
+.file-content-extra-car .light {
+  height: 100%;
+}
+.file-content-extra-car .col-1 {
+  width: 66px;
+}
+.file-content-extra-car .col-2 {
+  width: 90px;
+}
+.file-content-extra-car .col-3 {
+  position: relative;
+  width: 256px;
+  padding-left: 34px;
+  text-align: left;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>响应式网格</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .h50 {
+      height: 50px;
+      margin: 10px;
+      background-color: #eee;
+      border: 1px solid #999;
+    }
+    .container-fluid {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #999;
+    }
+    .row {
+      overflow: hidden;
+    }
+    .col-xs-2 {
+      float: left;
+      width: 16.66666667%;
+    }
+    .col-xs-3 {
+      float: left;
+      width: 25%;
+    }
+    .col-xs-6 {
+      float: left;
+      width: 50%;
+    }
+    .col-xs-8 {
+      float: left;
+      width: 66.66666667%;
+    }
+    .col-xs-12 {
+      float: left;
+      width: 100%;
+    }
+    @media screen and (min-width: 768px) {
+      .col-ms-1 {
+        float: left;
+        width: 8.33333333%;
+      }
+      .col-ms-2 {
+        float: left;
+        width: 16.66666667%;
+      }
+      .col-ms-3 {
+        float: left;
+        width: 25%;
+      }
+      .col-ms-4 {
+        float: left;
+        width: 33.33333333%;
+      }
+      .col-ms-6 {
+        float: left;
+        width: 50%;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-ms-4 col-xs-6">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-4 col-xs-6">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-4 col-xs-12">
+        <div class="h50"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-ms-3 col-xs-3">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-6 col-xs-6">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-3 col-xs-3">
+        <div class="h50"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-ms-1 col-xs-2">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-1 col-xs-2">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-2 col-xs-8">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-2 col-xs-3">
+        <div class="h50"></div>
+      </div>
+      <div class="col-ms-6 col-xs-3">
+        <div class="h50"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

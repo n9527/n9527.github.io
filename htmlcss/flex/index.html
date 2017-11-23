@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>display: flex;</title>
+</head>
+<body>
+<h3>flex布局</h3>
+<ol>
+  <li>
+    <dl>
+      <dt><h4>flex-direction 主轴方向</h4></dt>
+      <dd>
+        <ul>
+          <li>flex-direction: row; 默认从左向右</li>
+          <li>flex-direction: reverse-row; 从右向左且子级的先后顺序也会颠倒</li>
+          <li>flex-direction: column; 从上向下</li>
+          <li>flex-direction: reverse-column; 从下向上且子级顺序也会颠倒</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><h4>flex-wrap 如何换行</h4></dt>
+      <dd>
+        <ul>
+          <li>flex-wrap: nowrap; (默认的)不换行</li>
+          <li>flex-wrap: wrap; 换行</li>
+          <li>flex-wrap: wrap-reverse; 换行,第一行在下面,半行的在上面</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><h4>justify-content 主轴水平对齐方式</h4></dt>
+      <dd>
+        <ul>
+          <li>justify-content: flex-start; (默认)左对齐</li>
+          <li>justify-content: flex-end; 右对齐</li>
+          <li>justify-content: center; 居中</li>
+          <li>justify-content: space-between; 两端对齐</li>
+          <li>justify-content: space-around; 平分边距</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><h4>align-items 主轴垂直对齐方式</h4></dt>
+      <dd>
+        <ul>
+          <li>align-items: flex-start; 顶对齐</li>
+          <li>align-items: flex-end; 底对齐</li>
+          <li>align-items: center; 垂直居中对齐</li>
+          <li>align-items: baseline; 子级的第一行基线对齐</li>
+          <li>align-items: stretch; 充满容器高度</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><h4>flex控制子项目的缩放比例(设置在子级)</h4></dt>
+      <dd>
+        <ul>
+          <li>flex: 1; 平分父级的宽度站1分</li>
+          <li>flex: 2; 平分父级的宽度站2分</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><h4>align-self 单个子级的垂直对齐方式(设置在子级)</h4></dt>
+      <ul>
+        <li>align-self: auto | flex-start | flex-end | center | baseline | stretch;</li>
+      </ul>
+    </dl>
+  </li>
+</ol>
+
+</body>
+</html>

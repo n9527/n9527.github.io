@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务五：基础JavaScript练习（一）</title>
+  <style>
+    span {
+      display: inline-block;
+      width: 20px;
+      height: 200px;
+      margin: 0 10px;
+      background-color: red;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<label for="number">请输入正数(范围10-100)</label><input type="text" id="number">
+<button>左侧入</button>
+<button>右侧入</button>&nbsp;&nbsp;&nbsp;
+<button>左侧出</button>
+<button>右侧出</button>
+<p>
+  <span></span><span style="height: 100px"></span>
+</p>
+<input type="button" id="sort" value="排序">
+<script>
+  
+  
+  (function () {
+    var p = document.getElementsByTagName('p')[0],
+      btn = document.getElementsByTagName('button'),
+      Sort = document.getElementById('sort'),
+      input = document.getElementById('number'),
+      reg = /^([1-9]\d|100)$/,
+      bool = true;
+    
+    //在容器最前面添加元素
+    btn[0].onclick = function () {
+      if (reg.test(input.value)) {
+        var span = document.createElement('span');
+        span.style.height = input.value * 2 + 'px';
+        
+        //判断容器当前有没有子级元素,如果没有直接appendChild就行了;
+        if (p.children[0]) {
+          p.insertBefore(span, p.children[0]);
+        } else {
+          p.appendChild(span);
+        }
+      } else {
+        alert('输入有误,请重新输入!');
+      }
+    }
+    
+    //在容器末尾添加元素
+    btn[1].onclick = function () {
+      if (reg.test(input.value)) {
+        var span = document.createElement('span');
+        span.style.height = input.value * 2 + 'px';
+        
+        p.appendChild(span);
+      } else {
+        alert('输入有误,请重新输入!');
+      }
+    }
+    
+    //删除第一个元素
+    btn[2].onclick = function () {
+      p.removeChild(p.children[0]);
+    }
+    
+    //删除最后一个元素
+    btn[3].onclick = function () {
+      p.removeChild(p.children[p.children.length - 1]);
+    }
+    
+    //点击谁删除谁
+    p.onclick = function (event) {
+      var e = event || window.event,
+        target = e.target ? e.target : e.srcElement;
+      
+      if (target.tagName === 'SPAN') {
+        p.removeChild(target);
+      }
+    }
+    
+    //排序
+    Sort.onclick = function () {
+
+      for (var i = 0; i < p.children.length; i++) {
+
+        for (var j = 0; j < p.children.length - 1 - i; j++) {
+          if (parseInt(getStyle(p.children[j], 'height')) >
+            parseInt(getStyle(p.children[j + 1], 'height'))) {
+            var nodePrev = p.children[j].cloneNode(true);
+            var nodeNext = p.children[j + 1].cloneNode(true);
+            
+            p.replaceChild(nodeNext, p.children[j]);
+            p.replaceChild(nodePrev, p.children[j + 1]);
+          }
+        }
+      }
+
+    }
+    
+    //兼容获取元素当前样式
+    function getStyle(ele, attr) {
+      return ele.currentStyle ? ele.currentStyle[attr] :
+        window.getComputedStyle(ele, null)[attr];
+    }
+  }())
+
+
+</script>
+</body>
+</html>

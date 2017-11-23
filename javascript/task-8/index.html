@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务七：UI组件之排序表格</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body {
+      padding-top: 50px;
+    }
+    
+    table {
+      margin: 0 auto;
+      border: 2px solid #bbb;
+      border-collapse: collapse;
+    }
+    
+    th,
+    td {
+      width: 180px;
+      height: 60px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    
+    th {
+      position: relative;
+    }
+    
+    .ascend-btn {
+      position: absolute;
+      top: 9px;
+      left: 130px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-bottom-color: #f00;
+    }
+    
+    .down-btn {
+      position: absolute;
+      bottom: 9px;
+      left: 130px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: #00f;
+    }
+    
+    td {
+      text-align: center;
+    }
+    
+    p {
+      position: relative;
+      padding-left: 270px;
+      line-height: 30px;
+    }
+    
+    p .ascend-btn {
+      left: 366px;
+      top: 0;
+    }
+    
+    p .down-btn {
+      left: 366px;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+<p>点击表头中的<i class="ascend-btn"></i>&nbsp;&nbsp;&nbsp;&nbsp;按钮可以实现以当前项为标准的升序排列</p>
+<p>点击表头中的<i class="down-btn"></i>&nbsp;&nbsp;&nbsp;&nbsp;按钮可以实现以当前项为标准的降序排列</p>
+<table>
+  <thead>
+  <tr>
+    <th>姓名</th>
+    <th>
+      <span>语文</span>
+      <i class="ascend-btn"></i>
+      <i class="down-btn"></i>
+    </th>
+    <th>
+      <span>数学</span>
+      <i class="ascend-btn"></i>
+      <i class="down-btn"></i>
+    </th>
+    <th>
+      <span>英语</span>
+      <i class="ascend-btn"></i>
+      <i class="down-btn"></i>
+    </th>
+    <th>
+      <span>总分</span>
+      <i class="ascend-btn"></i>
+      <i class="down-btn"></i>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+
+
+<script>
+  (function () {
+    var thead = document.getElementsByTagName('thead')[0];
+    var tbody = document.getElementsByTagName('tbody')[0];
+    
+    var data = [
+      ['小明', 90, 90, 120],
+      ['小红', 80, 75, 110],
+      ['张三', 100, 80, 90],
+      ['李四', 110, 100, 80]
+    ];
+    
+    var newData = total(data);
+    
+    
+    //计算总分
+    function total(arr) {
+      var totalVal;
+      
+      for (var i = 0; i < arr.length; i++) {
+        totalVal = 0;
+        
+        for (var j = 1; j < arr[i].length; j++) {
+          totalVal += arr[i][j];
+        }
+        arr[i].push(totalVal);
+      }
+      
+      return arr;
+    }
+    
+    //升序
+    function ascend(arr, index) {
+      var i, j, temp;
+      for (i = 0; i < arr.length; i++) {
+        for (j = 0; j < arr.length - 1 - i; j++) {
+          if (arr[j].children[index].innerHTML * 1
+            < arr[j + 1].children[index].innerHTML * 1) {
+            temp = arr[j].innerHTML;
+            arr[j].innerHTML = arr[j + 1].innerHTML;
+            arr[j + 1].innerHTML = temp;
+          }
+        }
+      }
+    }
+    
+    //降序
+    function down(arr, index) {
+      var i, j, temp;
+      for (i = 0; i < arr.length; i++) {
+        for (j = 0; j < arr.length - 1 - i; j++) {
+          if (arr[j].children[index].innerHTML * 1
+            > arr[j + 1].children[index].innerHTML * 1) {
+            temp = arr[j].innerHTML;
+            arr[j].innerHTML = arr[j + 1].innerHTML;
+            arr[j + 1].innerHTML = temp;
+          }
+        }
+      }
+    }
+    
+    //添加到页面
+    function appendChild(arr) {
+      
+      for (var i = 0; i < arr.length; i++) {
+        var tr = document.createElement('tr');
+        
+        for (var j = 0; j < arr[i].length; j++) {
+          var td = document.createElement('td');
+          td.innerHTML = arr[i][j];
+          tr.appendChild(td);
+        }
+        
+        tbody.appendChild(tr);
+      }
+    }
+    
+    function init(arr) {
+      appendChild(arr);
+      
+      //页面初始化完成以后,默认以第一行的最后一个进行升序排列.
+      ascend(tbody.children, tbody.children[0].children.length - 1)
+    }
+    
+    init(newData);
+    
+    //页面点击按钮实现排序并更新页面内容
+    sort();
+    
+    function sort() {
+      var th = thead.getElementsByTagName('th');
+      
+      for (var i = 1; i < th.length; i++) {
+        
+        //升序按钮事件
+        (function (j) {
+          th[j].getElementsByTagName('i')[0].onclick = function () {
+            ascend(tbody.children, j);
+          }
+        }(i));
+        
+        //降序按钮事件
+        (function (j) {
+          th[j].getElementsByTagName('i')[1].onclick = function () {
+            down(tbody.children, j);
+          }
+        }(i));
+      }
+    }
+    
+  }())
+</script>
+</body>
+</html>

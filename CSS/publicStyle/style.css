@@ -1,0 +1,42 @@
+body {
+  font-family: "microsoft yahei";
+}
+
+h3 {
+  color: red;
+}
+
+h4 {
+  color: green;
+}
+
+strong {
+  color: blue;
+}
+
+pre {
+  width: 765px;
+  padding: 20px;
+  border: 1px dotted #785;
+  background-color: #f5f5f5;
+  font-family: Consolas;
+}
+
+table {
+  width: 765px;
+  border-collapse: collapse;
+}
+
+tr:nth-child(2n) {
+  background: #eee;
+}
+th,
+td {
+  padding: 5px 15px 5px 6px;
+  border: 1px solid #ccc;
+}
+
+.example {
+  width: 500px;
+  background-color: #cdd;
+}

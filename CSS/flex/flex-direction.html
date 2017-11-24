@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>flex-direction</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      background-color: #eee;
+      font-family: "Microsoft YaHei";
+    }
+    section {
+      width: 1000px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    h3 {
+      margin-bottom: 20px;
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    li {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      background-color: #f00;
+      color: #fff;
+    }
+    section:first-child ul{
+      flex-direction: row;
+    }
+    section:nth-child(2) ul{
+      flex-direction: row-reverse;
+    }
+    section:nth-child(3) ul{
+      flex-direction: column;
+    }
+    section:nth-child(4) ul{
+      flex-direction: column-reverse;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h3>flex-direction: row;(默认)</h3>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </section>
+  <section>
+    <h3>flex-direction: row-reverse;</h3>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </section>
+  <section>
+    <h3>flex-direction: column;</h3>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </section>
+  <section>
+    <h3>flex-direction: column-reverse;</h3>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </section>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 文本</title>
+  <link rel="stylesheet" href="../publicStyle/style.css">
+  <style>
+    .box1 {
+      width: 500px;
+      line-height: 20px;
+      background-color: #cdd;
+      text-align: justify
+    }
+    
+    .box2 {
+      width: 500px;
+      line-height: 20px;
+      background-color: #cdd;
+      text-align: left;
+    }
+    
+    .spread {
+      width: 500px;
+      background-color: #cdd;
+      word-spacing: 30px;
+    }
+    
+    .tight {
+      width: 500px;
+      background-color: #cdd;
+      word-spacing: -0.5em;
+    }
+    
+    .letter-spread {
+      letter-spacing: 20px;
+    }
+    
+    .letter-tight {
+      letter-spacing: -0.5em;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>CSS 文本</h1>
+  <h3>CSS 文本属性</h3>
+  <table>
+    <tr>
+      <td>color</td>
+      <td>设置文本颜色</td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>设置文本方向</td>
+    </tr>
+    <tr>
+      <td>line-height</td>
+      <td>设置行高</td>
+    </tr>
+    <tr>
+      <td>letter-spacing</td>
+      <td>设置字母间距</td>
+    </tr>
+    <tr>
+      <td>text-align</td>
+      <td>对齐元素中的文本</td>
+    </tr>
+    <tr>
+      <td>text-decoration</td>
+      <td>文本装饰</td>
+    </tr>
+    <tr>
+      <td>text-indent</td>
+      <td>首行缩进</td>
+    </tr>
+    <tr>
+      <td>text-shadow</td>
+      <td>设置文本阴影</td>
+    </tr>
+    <tr>
+      <td>text-transform</td>
+      <td>控制文本大小写</td>
+    </tr>
+    <tr>
+      <td>white-space</td>
+      <td>设置元素中空白的处理方式</td>
+    </tr>
+    <tr>
+      <td>word-spacing</td>
+      <td>设置单词间距</td>
+    </tr>
+  </table>
+  <ul>
+    <li>
+      <h3>缩进文本</h3>
+      <p><strong>text-indent </strong>可以实现文本缩进。</p>
+      <p>text-indent 只可以给块级元素设置缩进。</p>
+      <h4>使用负值</h4>
+      <p>text-indent 可以使用负值，如果一个段落设置了负值，那么首行文字可能会超出容器的左边界。为了避免出现这种显示问题，可以设置一些内边距或者外边距。</p>
+      <h4>使用百分比</h4>
+      <p>text-indet 可以使用长度单位，也可以使用百分比。百分比是相对容器的宽度。</p>
+      <h4>继承</h4>
+      <p>text-indent 属性可以实现继承。</p>
+    </li>
+    <li>
+      <h3>水平对齐</h3>
+      <p><strong>text-align </strong>可以设置一个容器中文本相互间的对齐方式。</p>
+      <p>值left、right、center 分别设置左、右、居中对齐。</p>
+      <h4>justify</h4>
+      <p>justify 设置文本的行的左右两端本别放在容器的内边界上。用户代理确定对齐文本如何拉伸，而不是 CSS。</p>
+      <p>text-align: <strong>justify</strong>; 表现形式如下：</p>
+      <div class="box1">There is clearly a need for CSS to be taken seriously by graphic artists. The Zen Garden aims to
+        excite, inspire, and encourage participation. To begin, view some of the existing designs in the list. Clicking
+        on any one will load the style sheet into this very page. The code remains the same, the only thing that has
+        changed is the external .css file. Yes, really
+      </div>
+      <p>text-align: <strong>left</strong>; 可以和justify进行一下比较。</p>
+      <div class="box2">There is clearly a need for CSS to be taken seriously by graphic artists. The Zen Garden aims to
+        excite, inspire, and encourage participation. To begin, view some of the existing designs in the list. Clicking
+        on any one will load the style sheet into this very page. The code remains the same, the only thing that has
+        changed is the external .css file. Yes, really
+      </div>
+    </li>
+    <li>
+      <h3>字间隔</h3>
+      <!--spacing 英 [ˈspeɪsɪŋ] 间隔，间距; 跨距; 疏密; 留间隔;-->
+      <p><strong>word-spacing </strong>可以改变单词之间的标准间隔。默认值是 normal 和设置值为 0 效果是一样的</p>
+      <p>word-spacing 接受负值，正值间隔增加，负值将拉近间隔。</p>
+      <p>正值表现如下（word-spacing: 30px;）：</p>
+      <!--spread 伸开; 展开;-->
+      <p class="spread">This is a paragraph. The spaces between words will be increased.</p>
+      <p>负值是这样的（word-spacing: -0.5em;）：</p>
+      <!--tight 英 [taɪt] 紧的，牢固的;  -->
+      <p class="tight">This is a paragraph. The spaces between words will be increased.</p>
+    </li>
+    <li>
+      <h3>字母间隔</h3>
+      <p><strong>letter-spacing </strong>修改的是字符或者字母的间隔。</p>
+      <pre>letter-spacing: -0.5em;</pre>
+      <p class="letter-tight example">This is header 1</p>
+      <pre>letter-spacing: 20px;</pre>
+      <p class="letter-spread example">This is header 1</p>
+    </li>
+    <li>
+      <h3>字符转换</h3>
+      <p><strong>text-transform </strong>处理文本的大小写。</p>
+      <!--capitalize 英 [ˈkæpɪtəlaɪz] 用大写字母写或印刷;-->
+      <p>默认值 none 对文本不做任何改动，uppercase 和 lowercase将文本转换为全大写和全小写。最后capitalize 只对每个单词的首字母大写。</p>
+    </li>
+    <li>
+      <h3>文本修饰</h3>
+      <p><strong>text-decoration </strong>属性有5个值。</p>
+      <p>分别是
+        <strong>none</strong>、<strong>underline</strong>、<strong>overline</strong>、<strong>line-through</strong>和<strong>blink</strong>。
+      </p>
+      <p>underline 会对元素加下划线，overline会给元素加上划线，line-through则对文本中间画一个贯穿线，blink会让文本闪烁。</p>
+      <p><strong>text-decoration 的值会替换而不会累加</strong>，因此下面的规则 class 为 stricken 的 h2 都只有一条贯穿线，而没有上划线和下划线。</p>
+      <pre>
+h2.stricken {text-decoration: line-through;}
+h2 {text-decoration: underline overline;}</pre>
+    </li>
+    <li>
+      <h3>处理空白字符</h3>
+      <p><strong>white-space</strong> 属性设置用户代理对文档空格、换行和 tab 字符的处理。</p>
+      <p>下表总结了 white-space 属性的表现形式：</p>
+      <table>
+        <tr>
+          <td>normal</td>
+          <td>合并空白符</td>
+          <td>忽略换行符</td>
+          <td>允许自动换行</td>
+        </tr>
+        <tr>
+          <td>nowrap</td>
+          <td>合并空白符</td>
+          <td>忽略换行符</td>
+          <td>不允许自动换行</td>
+        </tr>
+        <tr>
+          <td>pre</td>
+          <td>保留空白符</td>
+          <td>保留换行符</td>
+          <td>不允许自动换行</td>
+        </tr>
+        <tr>
+          <td>pre-line</td>
+          <td>合并空白符</td>
+          <td>保留换行符</td>
+          <td>允许自动换行</td>
+        </tr>
+        <tr>
+          <td>pre-wrap</td>
+          <td>保留空白符</td>
+          <td>保留换行符</td>
+          <td>允许自动换行</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <h3>文本方向</h3>
+      <p><strong>direction</strong> 设置块级元素中文本的书写方向。</p>
+      <p>可能的值</p>
+      <table>
+        <tr>
+          <td>ltr</td>
+          <td>默认。文本从左向右。</td>
+        </tr>
+        <tr>
+          <td>rtl</td>
+          <td>文本从右向左。</td>
+        </tr>
+        <tr>
+          <td>inherit</td>
+          <td>继承父级的 derection 属性的值。</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <h3></h3>
+      <p><strong></strong></p>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>background 背景</title>
+  <link rel="stylesheet" href="../publicStyle/style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url(gougou.jpg) right top no-repeat fixed;
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper">
+  <h1>css 背景</h1>
+  <ul>
+    <li>
+      <h3>背景色</h3>
+      <p>可以使用background-color为元素设置背景色</p>
+      <p>background-color 不能继承，默认值是 transprent。如果一个元素没有指定背景色，那么这个元素的背景色就是透明的，这样其父级的背景颜色才能看得见。</p>
+    </li>
+    <li>
+      <h3>背景图像</h3>
+      <p>要把图像放入背景，可以使用background-image。默认值是none。</p>
+      <p>如果需要设置一个背景图像，必须为这个属性设置一个 URL 值。</p>
+      <p>背景图像也不能继承。所有的背景属性都不能继承。</p>
+    </li>
+    <li>
+      <h3>背景重复</h3>
+      <p>如果需要对背景图像进行平铺，可以使用 background-repeat 属性。</p>
+      <p>repeat：图像在水平、垂直方向都平铺，repeat-x 和 repeat-y 分别使图片在水平和垂直方向平铺，norepeat 则不允许图片平铺。</p>
+    </li>
+    <li>
+      <h3>背景定位</h3>
+      <p>background-position 可以改变图片在背景中的位置。</p>
+      <p>背景定位的值有很多方法。可以使用关键字：top、bottom、left、right、center。也可以使用长度单位 px、cm，也可以使用百分比。</p>
+      <p>关键字最好理解 left top 及图片放置在元素内边距区域的左上角。</p>
+      <p>长度单位是相对于元素内边距区域左上角的偏移，比如设置为 10px 20px，图像在左上角向右 10px，向下20px。</p>
+      <p>百分比比较复杂，百分比同时作用于图片和元素。例如设置 50% 50%，表现为图像的中心点和元素的中心点对齐。</p>
+    </li>
+    <li>
+      <h3>背景是否滚动</h3>
+      <p>scroll：默认值，滚动（会被滚动条卷走）。</p>
+      <p>fixed：背景图片位置固定，不会移动。</p>
+      <p>inherit：继承父级。</p>
+    </li>
+    <li>
+      <h3>背景连写</h3>
+      <p>background在一个属性中可以设置所有的背景属性。</p>
+      <p>通常建议使用连写的方式，老浏览器也支持，输入的字母也少。</p>
+    </li>
+  </ul>
+</div>
+</body>
+
+</html>

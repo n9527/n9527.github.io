@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 内边距</title>
+  <link rel="stylesheet" href="../../publicStyle/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>CSS 内边距</h1>
+    <div class="intro">
+      <p><strong>元素的内边距是边框和内容之间的距离。单位接收长度单位和百分比，但是不能是负值。</strong></p>
+      <p><strong>CSS padding 属性定义元素内容和边框之间的空白区域。</strong></p>
+    </div>
+    <ul>
+      <li>
+        <h3>CSS padding 属性</h3>
+        <p>如果你希望一个元素的四个内边距都是10px,只需要向下面这样：</p>
+        <pre>h1 {padding: 10px;}</pre>
+        <p>还可以按照上、右、下、左的顺序分别设置各个内边距的值，各个边都可以使用不同的长度单位或者百分比：</p>
+        <pre>h1 {padding: 10px 1em 2em 20%;}</pre>
+      </li>
+      <li>
+        <h3>单边内边距属性</h3>
+        <p>也可以下面四个单独的属性，分别设置上、右、下、左内边距：</p>
+        <ul>
+          <li>padding-top</li>
+          <li>padding-right</li>
+          <li>padding-bottom</li>
+          <li>padding-left</li>
+        </ul>
+      </li>
+      <li>
+        <h3>内边距的百分比数值</h3>
+        <p>百分比是参照父级元素的 width 值计算的，上下内边距和左右内边距都是相对父级的 width 而不是 height。</p>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

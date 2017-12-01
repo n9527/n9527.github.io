@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 连接</title>
+  <link rel="stylesheet" href="../../publicStyle/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>CSS 连接</h1>
+    <ul>
+      <li>
+        <h3>连接的四种状态</h3>
+        <table>
+          <tr>
+            <td>a:link</td>
+            <td>没有被访问的连接</td>
+          </tr>
+          <tr>
+            <td>a:visited</td>
+            <td>已经被访问过的连接</td>
+          </tr>
+          <tr>
+            <td>a:hover</td>
+            <td>鼠标指针移动到连接上</td>
+          </tr>
+          <tr>
+            <td>a:active</td>
+            <td>正在被点击的连接</td>
+          </tr>
+        </table>
+        <p>在为连接的不同状态设置样式的时候，需要按照以上表格中的顺序。</p>
+      </li>
+      <li>
+        <h3>文本修饰</h3>
+        <p><strong>text-decoration </strong>多用于去掉连接的下划线。</p>
+        <pre>
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;}
+a:active {text-decoration: underline;}</pre>
+      </li>
+      <li>
+        <h3>背景色</h3>
+        <p><strong>background-color </strong>设置连接的背景色。</p>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 表格</title>
+  <link rel="stylesheet" href="../../publicStyle/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>CSS 表格</h1>
+    <ul>
+      <li>
+        <h3>表格的属性</h3>
+        <table>
+          <tr>
+            <td>border-collapse</td>
+            <td>合并表格的边框。</td>
+          </tr>
+          <tr>
+            <td>border-spacing</td>
+            <td>设置单元格的距离。</td>
+          </tr>
+          <tr>
+            <td>caption-side</td>
+            <td>设置表格标题的位置。</td>
+          </tr>
+          <tr>
+            <td>empty-cells</td>
+            <td>设置是否显示空单元格。</td>
+          </tr>
+          <tr>
+            <td>table-layout</td>
+            <td>设置单元、行还有列的算法</td>
+          </tr>
+        </table>
+      </li>
+      <li>
+        <h3>折叠边框</h3>
+        <p><strong>border-collapse </strong>设置边框是否合并。</p>
+        <pre>table {border-collapse: collapse;}</pre>
+      </li>
+      <li>
+        <h3>表格文本对齐</h3>
+        <p><strong>text-align </strong>设置水平对齐方式，比如左对齐、右对齐或者居中对齐。</p>
+        <p><strong>vertical-align </strong>设置垂直对齐方式，例如top、bottom或者middle。</p>
+      </li>
+      <li>
+        <h3>显示空的单元格</h3>
+        <p><strong>empty-cells </strong>设置是否显示空的单元格。</p>
+        <table>
+          <tr>
+            <td>empty-cells: hide;</td>
+            <td>不在空白的单元格四边绘制边框。</td>
+          </tr>
+          <tr>
+            <td>empty-cells: show;</td>
+            <td>在空白单元格周围绘制边框。默认值。</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

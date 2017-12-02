@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 浮动</title>
+  <link rel="stylesheet" href="../publicStyle/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>CSS 浮动</h1>
+    <ul>
+      <li>
+        <h3>浮动</h3>
+        <p><strong>float </strong>定义元素那个方向浮动。元素浮动以后会从文档流中删除。</p>
+        <p><strong>float: left;</strong> 元素向左浮动。</p>
+        <p><strong>float: right;</strong> 元素向右浮动。</p>
+      </li>
+      <li>
+        <h3>清除浮动</h3>
+        <ol>
+          <li>额外标签清除浮动，在最后一个浮动元素后面添加一个空元素设置样式 clear: both;</li>
+          <li>浮动元素的父级使用overflow: hidden;</li>
+          <li>
+            用的最多的是<strong>伪元素清除浮动</strong>。
+            <pre>
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}</pre>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

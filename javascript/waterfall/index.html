@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JQuery 实现瀑布流</title>
+  <style>
+  body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  .wrapper {
+    padding: 50px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 300px;
+  }
+
+  .items {
+    position: relative;
+    /* display: flex; */
+    /* 环函 */
+    /* flex-wrap: wrap; */
+  }
+
+  .item {
+    width: 228px;
+    position: absolute;
+  }
+
+  .tips {
+    width: 280px;
+    height: 40px;
+    margin: 30px auto 0;
+    text-align: center;
+    line-height: 40px;
+    background-color: #CCC;
+    border-radius: 6px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .tips.loading {
+    /* background-color: transparent; */
+    background-color: hotpink;
+  }
+  </style>
+</head>
+
+<body>
+  <h1>瀑布流 展示页面</h1>
+  <div class="wrapper">
+    <!-- items 作为 瀑布流的容器  瀑布流中的 元素的 宽度 是固定的 -->
+    <div class="items">
+    </div>
+    <p class="tips loading">正在加载...</p>
+  </div>
+  <!-- 模版 -->
+  <script type="text/template" id="template">
+    <div class="item">
+      <img src="{{path}}" alt="">
+      <p>{{text}}</p>
+    </div>
+  </script>
+  <script src="jquery.min.js"></script>
+  <script src="data.js"></script>
+  <script>
+  //模版插件
+  $.extend({
+    template: function(id, arr) {
+      //遍历数组数据后的累加字符串;
+      var reg = /{{(\w+)}}/;
+      var resultStr = '';
+
+      $.each(arr, function(k, v) {
+
+        //模版字符串
+        var str = document.getElementById(id).innerHTML;
+        var result = reg.exec(str);
+
+        while (result) {
+          str = str.replace(result[0], v[result[1]]);
+          result = reg.exec(str);
+        }
+        resultStr += str;
+      });
+
+      return resultStr;
+    }
+  });
+
+  //瀑布流插件
+  $.fn.extend({
+    waterfall: function() {
+      var container = this.get(0);
+
+      //判断是不是第一次调用
+      if (!container.index) {
+        container.index = 0;
+        container.heightArr = [];
+      }
+
+      //第一步 获取相关的数据
+      //获取容器总宽度
+      var totalWidth = this.width();
+
+      //获取子元素的宽度
+      var itemWidth = this.children().width();
+
+      //计算一行放几列
+      var col = Math.floor(totalWidth / itemWidth);
+
+      //计算边距
+      var margin = (totalWidth - itemWidth * col) / (col - 1);
+
+      //第二步 设置一个高度的数组,用来记录﻿每一列当前的高度.
+      if (container.index == 0) {
+        for (var i = 0; i < col; i++) {
+
+          //初始高度都是边距的高度;
+          container.heightArr[i] = margin;
+        }
+      }
+
+
+      //第三部 遍历定位子元素;
+      var newChildren = [].slice.call(container.children, -10);
+
+      $(newChildren).each(function(index, ele) {
+
+        //获取遍历到的当前子元素的值currentHeight;
+        var currentHeight = $(ele).height();
+
+        //假设一个最小高的度索引;
+        var minIndex = 0;
+
+        //最小高度值当然等于最小高度index这一列的高度
+        var minHeight = container.heightArr[minIndex];
+
+        //循环高度数组求最小值;
+        //记录为最小高度作为当前子元素的top值
+        //记录最小值的索引;索引控制当前子元素的left值;
+        for (var i = 0; i < container.heightArr.length; i++) {
+          if (container.heightArr[i] < minHeight) {
+            minHeight = container.heightArr[i];
+            minIndex = i;
+          }
+        }
+
+        //给当前的子元素定位;
+        $(ele).css({
+
+          //top值就是最小高度的值
+          top: minHeight,
+
+          //left值就是最小高度的index*子元素宽+index*margin
+          left: itemWidth * minIndex + margin * minIndex
+        });
+
+        //修改高度数组中的最小高度值;
+        container.heightArr[minIndex] += currentHeight;
+        container.heightArr[minIndex] += margin;
+      });
+
+      //修改父盒子的高度;父盒子的高度=高度数组中最大的高度值;
+      var containerHeight = container.heightArr[0];
+      for (var j = 0; j < container.heightArr.length; j++) {
+        if (container.heightArr[j] > containerHeight) {
+          containerHeight = container.heightArr[j];
+        }
+      }
+
+      this.height(containerHeight);
+
+      container.index++;
+
+      return this;
+
+
+    }
+  })
+  </script>
+  <script>
+  $('.tips').on('click', function() {
+
+    //随机获取10条数据
+    var randomArr = [];
+    for (var i = 0; i < 10; i++) {
+      var index = Math.floor(Math.random() * dataArr.length);
+      randomArr.push(dataArr[index]);
+    }
+
+    //将数据格式化以后添加到页面中，调用瀑布流插件实现布局
+    $('.items').append($.template('template', randomArr)).waterfall();
+
+    //    $.ajax({
+    //        url: 'data.json',
+    //        success: function(dataArr) {
+
+    //            //这个数组放着10个随机index,用来从大数组中随机取10个数据;
+    //            var randomArr = [];
+    //            for (var i = 0; i < 10; i++) {
+    //                var index = Math.floor(Math.random() * dataArr.length);
+    //                randomArr.push(dataArr[index]);
+    //            }
+    //            var resultStr = $.template('template', randomArr);
+    //            $('.items').append(resultStr).pubuliu();
+    //
+    //        }
+    //    })
+  })
+  </script>
+</body>
+
+</html>
